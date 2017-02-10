@@ -1,0 +1,22 @@
+group 'io.disc99'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+    distributionUrl = 'http://services.gradle.org/distributions/gradle-3.3-all.zip'
+}
+
