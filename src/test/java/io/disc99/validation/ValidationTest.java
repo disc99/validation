@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static io.disc99.validation.Validation.invalid;
+import static io.disc99.validation.Validation.valid;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,15 +14,15 @@ public class ValidationTest {
 
     @Test
     public void shouldBuildUpForSuccessCombine() {
-        Validation<String, String> v1 = Validation.valid("John Doe");
-        Validation<String, Integer> v2 = Validation.valid(39);
-        Validation<String, Optional<String>> v3 = Validation.valid(Optional.of("address"));
-        Validation<String, Optional<String>> v4 = Validation.valid(Optional.empty());
-        Validation<String, String> v5 = Validation.valid("111-111-1111");
-        Validation<String, String> v6 = Validation.valid("alt1");
-        Validation<String, String> v7 = Validation.valid("alt2");
-        Validation<String, String> v8 = Validation.valid("alt3");
-        Validation<String, String> v9 = Validation.valid("alt4");
+        Validation<String, String> v1 = valid("John Doe");
+        Validation<String, Integer> v2 = valid(39);
+        Validation<String, Optional<String>> v3 = valid(Optional.of("address"));
+        Validation<String, Optional<String>> v4 = valid(Optional.empty());
+        Validation<String, String> v5 = valid("111-111-1111");
+        Validation<String, String> v6 = valid("alt1");
+        Validation<String, String> v7 = valid("alt2");
+        Validation<String, String> v8 = valid("alt3");
+        Validation<String, String> v9 = valid("alt4");
 
         Validation<List<String>, TestValidation> result = v1.combine(v2).ap(TestValidation::new);
 
@@ -51,15 +53,15 @@ public class ValidationTest {
 
     @Test
     public void shouldBuildUpForSuccessMapN() {
-        Validation<String, String> v1 = Validation.valid("John Doe");
-        Validation<String, Integer> v2 = Validation.valid(39);
-        Validation<String, Optional<String>> v3 = Validation.valid(Optional.of("address"));
-        Validation<String, Optional<String>> v4 = Validation.valid(Optional.empty());
-        Validation<String, String> v5 = Validation.valid("111-111-1111");
-        Validation<String, String> v6 = Validation.valid("alt1");
-        Validation<String, String> v7 = Validation.valid("alt2");
-        Validation<String, String> v8 = Validation.valid("alt3");
-        Validation<String, String> v9 = Validation.valid("alt4");
+        Validation<String, String> v1 = valid("John Doe");
+        Validation<String, Integer> v2 = valid(39);
+        Validation<String, Optional<String>> v3 = valid(Optional.of("address"));
+        Validation<String, Optional<String>> v4 = valid(Optional.empty());
+        Validation<String, String> v5 = valid("111-111-1111");
+        Validation<String, String> v6 = valid("alt1");
+        Validation<String, String> v7 = valid("alt2");
+        Validation<String, String> v8 = valid("alt3");
+        Validation<String, String> v9 = valid("alt4");
 
         // Alternative map(n) functions to the 'combine' function
         Validation<List<String>, TestValidation> result = Validation.combine(v1, v2).ap(TestValidation::new);
@@ -85,6 +87,27 @@ public class ValidationTest {
 
         assertThat(result.get() instanceof TestValidation).isTrue();
         assertThat(result9.get() instanceof String).isTrue();
+    }
+
+    @Test
+    public void shouldValidateValidPerson() {
+        final String name = "John Doe";
+        final int age = 30;
+        final Validation<List<String>, Person> actual = new PersonValidator().validatePerson(name, age);
+        final Validation<List<String>, Person> expected = valid(new Person(name, age));
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void shouldValidateInvalidPerson() {
+        final String name = "John? Doe!4";
+        final int age = -1;
+        final Validation<List<String>, Person> actual = new PersonValidator().validatePerson(name, age);
+        final Validation<List<String>, Person> expected = invalid(Arrays.asList(
+                "Name contains invalid characters: '[!, 4, ?]'",
+                "Age must be greater than 0"
+        ));
+        assertThat(actual).isEqualTo(expected);
     }
 
     public static class TestValidation {
@@ -160,29 +183,6 @@ public class ValidationTest {
         }
     }
 
-    // -- Complete Validation example, may be moved to javaslang-documentation later
-
-    @Test
-    public void shouldValidateValidPerson() {
-        final String name = "John Doe";
-        final int age = 30;
-        final Validation<List<String>, Person> actual = new PersonValidator().validatePerson(name, age);
-        final Validation<List<String>, Person> expected = Validation.valid(new Person(name, age));
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @Test
-    public void shouldValidateInvalidPerson() {
-        final String name = "John? Doe!4";
-        final int age = -1;
-        final Validation<List<String>, Person> actual = new PersonValidator().validatePerson(name, age);
-        final Validation<List<String>, Person> expected = Validation.invalid(Arrays.asList(
-                "Name contains invalid characters: '[!, 4, ?]'",
-                "Age must be greater than 0"
-        ));
-        assertThat(actual).isEqualTo(expected);
-    }
-
     static class PersonValidator {
 
         private final String validNameChars = "[a-zA-Z ]";
@@ -197,17 +197,12 @@ public class ValidationTest {
                     .filter(n -> !n.replaceAll(validNameChars, "").isEmpty())
                     .collect(collectingAndThen(toCollection(TreeSet::new),
                             invalid -> invalid.isEmpty()
-                                    ? Validation.valid(name)
-                                    : Validation.invalid("Name contains invalid characters: '" + invalid + "'")));
-
-            //            return CharSeq.of(name).replaceAll(validNameChars, "").transform(seq ->
-//                    seq.isEmpty() ? Validation.<String, String> valid(name)
-//                            : Validation.<String, String> invalid("Name contains invalid characters: '" + seq.distinct().sorted() + "'"));
+                                    ? valid(name)
+                                    : invalid("Name contains invalid characters: '" + invalid + "'")));
         }
 
         private Validation<String, Integer> validateAge(int age) {
-            return (age < minAge) ? Validation.invalid("Age must be greater than 0")
-                    : Validation.valid(age);
+            return (age < minAge) ? invalid("Age must be greater than 0") : valid(age);
         }
     }
 

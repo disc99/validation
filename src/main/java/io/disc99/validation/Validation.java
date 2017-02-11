@@ -35,57 +35,15 @@ public interface Validation<E, T> {
     }
 
     /**
-     * Creates a {@code Validation} of an {@code Either}.
+     * Combines two {@code Validation}s to form a {@link Builder}, which can then be used to perform further
+     * combines, or apply a function to it in order to transform the {@link Builder} into a {@code Validation}.
      *
-     * @param either An {@code Either}
-     * @param <E>    type of the given {@code error}
-     * @param <T>    type of the value
-     * @return A {@code Valid(either.get())} if either is a Right, otherwise {@code Invalid(either.getLeft())}.
-     * @throws NullPointerException if either is null
+     * @param <U>        type of the value contained in validation
+     * @param validation the validation object to combine this with
+     * @return an instance of Builder
      */
-//    static <E, T> Validation<E, T> fromEither(Either<E, T> either) {
-//        Objects.requireNonNull(either, "either is null");
-//        return either.isRight() ? valid(either.get()) : invalid(either.getLeft());
-//    }
-
-    /**
-     * Reduces many {@code Validation} instances into a single {@code Validation} by transforming an
-     * {@code Iterable<Validation<? extends T>>} into a {@code Validation<Seq<T>>}.
-     *
-     * @param <E>    value type in the case of invalid
-     * @param <T>    value type in the case of valid
-     * @param values An iterable of Validation instances.
-     * @return A valid Validation of a sequence of values if all Validation instances are valid
-     * or an invalid Validation containing an accumulated List of errors.
-     * @throws NullPointerException if values is null
-     */
-//    static <E, T> Validation<List<E>, Seq<T>> sequence(Iterable<? extends Validation<List<E>, T>> values) {
-//        Objects.requireNonNull(values, "values is null");
-//        List<E> errors = List.empty();
-//        List<T> list = List.empty();
-//        for (Validation<List<E>, T> value : values) {
-//            if (value.isInvalid()) {
-//                errors = errors.prependAll(value.getError().reverse());
-//            } else if (errors.isEmpty()) {
-//                list = list.prepend(value.get());
-//            }
-//        }
-//        return errors.isEmpty() ? valid(list.reverse()) : invalid(errors.reverse());
-//    }
-
-    /**
-     * Narrows a widened {@code Validation<? extends E, ? extends T>} to {@code Validation<E, T>}
-     * by performing a type-safe cast. This is eligible because immutable/read-only
-     * collections are covariant.
-     *
-     * @param validation A {@code Validation}.
-     * @param <E>        type of error
-     * @param <T>        type of valid value
-     * @return the given {@code validation} instance as narrowed type {@code Validation<E, T>}.
-     */
-    @SuppressWarnings("unchecked")
-    static <E, T> Validation<E, T> narrow(Validation<? extends E, ? extends T> validation) {
-        return (Validation<E, T>) validation;
+    default <U> Builder<E, T, U> combine(Validation<E, U> validation) {
+        return new Builder<>(this, validation);
     }
 
     /**
@@ -285,6 +243,42 @@ public interface Validation<E, T> {
     boolean isInvalid();
 
     /**
+     * Gets the value of this Validation if is a Valid or throws if this is an Invalid
+     *
+     * @return The value of this Validation
+     * @throws NoSuchElementException if this is an Invalid
+     */
+    T get();
+
+    default Optional<Validation<E, T>> filter(Predicate<? super T> predicate) {
+        Objects.requireNonNull(predicate, "predicate is null");
+        return isInvalid() || predicate.test(get()) ? Optional.of(this) : Optional.empty();
+    }
+
+    /**
+     * Maps the underlying value to a different component type.
+     *
+     * @param f A mapper
+     * @param <U>    The new component type
+     * @return A new value
+     */
+    default <U> Validation<E, U> map(Function<? super T, ? extends U> f) {
+        Objects.requireNonNull(f, "f is null");
+        if (isInvalid()) {
+            return Validation.invalid(this.getError());
+        } else {
+            T value = this.get();
+            return Validation.valid(f.apply(value));
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    default <U> Validation<E, U> flatMap(Function<? super T, ? extends Validation<E, ? extends U>> mapper) {
+        Objects.requireNonNull(mapper, "mapper is null");
+        return isInvalid() ? (Validation<E, U>) this : (Validation<E, U>) mapper.apply(get());
+    }
+    
+    /**
      * Returns this {@code Validation} if it is valid, otherwise return the alternative.
      *
      * @param other An alternative {@code Validation}
@@ -308,19 +302,6 @@ public interface Validation<E, T> {
         return isValid() ? this : (Validation<E, T>) supplier.get();
     }
 
-//    @Override
-    default boolean isEmpty() {
-        return isInvalid();
-    }
-
-    /**
-     * Gets the value of this Validation if is a Valid or throws if this is an Invalid
-     *
-     * @return The value of this Validation
-     * @throws NoSuchElementException if this is an Invalid
-     */
-//    @Override
-    T get();
 
     /**
      * Gets the value if it is a Valid or an value calculated from the error
@@ -345,15 +326,6 @@ public interface Validation<E, T> {
      * @throws RuntimeException if this is a Valid
      */
     E getError();
-
-    /**
-     * Returns this as {@code Either}.
-     *
-     * @return {@code Either.right(get())} if this is valid, otherwise {@code Either.left(getError())}.
-     */
-//    default Either<E, T> toEither() {
-//        return isValid() ? Either.right(get()) : Either.left(getError());
-//    }
 
     /**
      * Performs the given action for the value contained in {@code Valid}, or do nothing
@@ -401,32 +373,6 @@ public interface Validation<E, T> {
         }
     }
 
-    /**
-     * Flip the valid/invalid values for this Validation. If this is a Valid&lt;E,T&gt;, returns Invalid&lt;T,E&gt;.
-     * Or if this is an Invalid&lt;E,T&gt;, return a Valid&lt;T,E&gt;.
-     *
-     * @return a flipped instance of Validation
-     */
-    default Validation<T, E> swap() {
-        if (isInvalid()) {
-            E error = this.getError();
-            return Validation.valid(error);
-        } else {
-            T value = this.get();
-            return Validation.invalid(value);
-        }
-    }
-
-//    @Override
-    default <U> Validation<E, U> map(Function<? super T, ? extends U> f) {
-        Objects.requireNonNull(f, "f is null");
-        if (isInvalid()) {
-            return Validation.invalid(this.getError());
-        } else {
-            T value = this.get();
-            return Validation.valid(f.apply(value));
-        }
-    }
 
     /**
      * Whereas map only performs a mapping on a valid Validation, and mapError performs a mapping on an invalid
@@ -452,21 +398,6 @@ public interface Validation<E, T> {
             T value = this.get();
             return Validation.valid(valueMapper.apply(value));
         }
-    }
-
-    /**
-     * Applies a function f to the error of this Validation if this is an Invalid. Otherwise does nothing
-     * if this is a Valid.
-     *
-     * @param <U> type of the error resulting from the mapping
-     * @param f   a function that maps the error in this Invalid
-     * @return an instance of Validation&lt;U,T&gt;
-     * @throws NullPointerException if mapping operation f is null
-     * @deprecated replaced by {@link #mapError(Function)}, will be removed in 3.0.0
-     */
-    @Deprecated(/* Use mapError instead. Will be removed in 3.0.0 */)
-    default <U> Validation<U, T> leftMap(Function<? super E, ? extends U> f) {
-        return mapError(f);
     }
 
     /**
@@ -513,49 +444,6 @@ public interface Validation<E, T> {
             }
         }
     }
-
-    /**
-     * Combines two {@code Validation}s to form a {@link Builder}, which can then be used to perform further
-     * combines, or apply a function to it in order to transform the {@link Builder} into a {@code Validation}.
-     *
-     * @param <U>        type of the value contained in validation
-     * @param validation the validation object to combine this with
-     * @return an instance of Builder
-     */
-    default <U> Builder<E, T, U> combine(Validation<E, U> validation) {
-        return new Builder<>(this, validation);
-    }
-
-    // -- Implementation of Value
-
-    default Optional<Validation<E, T>> filter(Predicate<? super T> predicate) {
-        Objects.requireNonNull(predicate, "predicate is null");
-        return isInvalid() || predicate.test(get()) ? Optional.of(this) : Optional.empty();
-    }
-
-    @SuppressWarnings("unchecked")
-    default <U> Validation<E, U> flatMap(Function<? super T, ? extends Validation<E, ? extends U>> mapper) {
-        Objects.requireNonNull(mapper, "mapper is null");
-        return isInvalid() ? (Validation<E, U>) this : (Validation<E, U>) mapper.apply(get());
-    }
-
-//    @Override
-    default Validation<E, T> peek(Consumer<? super T> action) {
-        if (isValid()) {
-            action.accept(get());
-        }
-        return this;
-    }
-
-//    @Override
-    default boolean isSingleValued() {
-        return true;
-    }
-
-//    @Override
-//    default Iterator<T> iterator() {
-//        return isValid() ? Iterator.of(get()) : Iterator.empty();
-//    }
 
     /**
      * A valid Validation
@@ -608,14 +496,9 @@ public interface Validation<E, T> {
             return Objects.hashCode(value);
         }
 
-//        @Override
-        public String stringPrefix() {
-            return "Valid";
-        }
-
         @Override
         public String toString() {
-            return stringPrefix() + "(" + value + ")";
+            return "Valid(" + value + ")";
         }
 
     }
@@ -671,16 +554,10 @@ public interface Validation<E, T> {
             return Objects.hashCode(error);
         }
 
-//        @Override
-        public String stringPrefix() {
-            return "Invalid";
-        }
-
         @Override
         public String toString() {
-            return stringPrefix() + "(" + error + ")";
+            return "Invalid(" + error + ")";
         }
-
     }
 
     final class Builder<E, T1, T2> {
@@ -719,7 +596,7 @@ public interface Validation<E, T> {
 
         public <R> Validation<List<E>, R> ap(Function3<T1, T2, T3, R> f) {
             return v3.ap(v2.ap(v1.ap(Validation.valid(
-                    t1 -> t2 -> t3 ->  f.apply(t1, t2, t3)
+                    t1 -> t2 -> t3 -> f.apply(t1, t2, t3)
             ))));
         }
 
