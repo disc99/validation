@@ -228,6 +228,33 @@ public interface Validation<E, T> {
         return new Builder8<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8);
     }
 
+    // TODO
+    default <U> Validation<List<E>, U> ap(Validation<List<E>, ? extends Function<? super T, ? extends U>> validation) {
+        Objects.requireNonNull(validation, "validation is null");
+        if (isValid()) {
+            if (validation.isValid()) {
+                Function<? super T, ? extends U> f = validation.get();
+                U u = f.apply(this.get());
+                return valid(u);
+            } else {
+                List<E> errors = validation.getError();
+                return invalid(errors);
+            }
+        } else {
+            if (validation.isValid()) {
+                E error = this.getError();
+                List<E> errors = new ArrayList<>();
+                errors.add(error);
+                return invalid(errors);
+            } else {
+                List<E> errors = validation.getError();
+                E error = this.getError();
+                errors.add(error);
+                return invalid(errors);
+            }
+        }
+    }
+
     /**
      * Check whether this is of type {@code Valid}
      *
@@ -249,11 +276,6 @@ public interface Validation<E, T> {
      * @throws NoSuchElementException if this is an Invalid
      */
     T get();
-
-    default Optional<Validation<E, T>> filter(Predicate<? super T> predicate) {
-        Objects.requireNonNull(predicate, "predicate is null");
-        return isInvalid() || predicate.test(get()) ? Optional.of(this) : Optional.empty();
-    }
 
     /**
      * Maps the underlying value to a different component type.
@@ -277,102 +299,6 @@ public interface Validation<E, T> {
         Objects.requireNonNull(mapper, "mapper is null");
         return isInvalid() ? (Validation<E, U>) this : (Validation<E, U>) mapper.apply(get());
     }
-    
-    /**
-     * Returns this {@code Validation} if it is valid, otherwise return the alternative.
-     *
-     * @param other An alternative {@code Validation}
-     * @return this {@code Validation} if it is valid, otherwise return the alternative.
-     */
-    @SuppressWarnings("unchecked")
-    default Validation<E, T> orElse(Validation<? extends E, ? extends T> other) {
-        Objects.requireNonNull(other, "other is null");
-        return isValid() ? this : (Validation<E, T>) other;
-    }
-
-    /**
-     * Returns this {@code Validation} if it is valid, otherwise return the result of evaluating supplier.
-     *
-     * @param supplier An alternative {@code Validation} supplier
-     * @return this {@code Validation} if it is valid, otherwise return the result of evaluating supplier.
-     */
-    @SuppressWarnings("unchecked")
-    default Validation<E, T> orElse(Supplier<Validation<? extends E, ? extends T>> supplier) {
-        Objects.requireNonNull(supplier, "supplier is null");
-        return isValid() ? this : (Validation<E, T>) supplier.get();
-    }
-
-
-    /**
-     * Gets the value if it is a Valid or an value calculated from the error
-     *
-     * @param other a function which converts an error to an alternative value
-     * @return the value, if the underlying Validation is a Valid, or else the alternative value
-     * provided by {@code other} by applying the error.
-     */
-    default T getOrElseGet(Function<? super E, ? extends T> other) {
-        Objects.requireNonNull(other, "other is null");
-        if (isValid()) {
-            return get();
-        } else {
-            return other.apply(getError());
-        }
-    }
-
-    /**
-     * Gets the error of this Validation if is an Invalid or throws if this is a Valid
-     *
-     * @return The error of this Invalid
-     * @throws RuntimeException if this is a Valid
-     */
-    E getError();
-
-    /**
-     * Performs the given action for the value contained in {@code Valid}, or do nothing
-     * if this is an Invalid.
-     *
-     * @param action the action to be performed on the contained value
-     * @throws NullPointerException if action is null
-     */
-//    @Override
-    default void forEach(Consumer<? super T> action) {
-        Objects.requireNonNull(action, "action is null");
-        if (isValid()) {
-            action.accept(get());
-        }
-    }
-
-    /**
-     * Performs the action in {@code fInvalid} on {@code error} if this is an {@code Invalid},
-     * or {@code fValid} on {@code value} if this is a {@code Valid}.
-     * Returns an object of type U.
-     *
-     * <p>
-     * <code>
-     * For example:<br>
-     * Validation&lt;List&lt;String&gt;,String&gt; valid = ...;<br>
-     * Integer i = valid.fold(List::length, String::length);
-     * </code>
-     * </p>
-     *
-     * @param <U>      the fold result type
-     * @param fInvalid the invalid fold operation
-     * @param fValid   the valid fold operation
-     * @return an instance of type U
-     * @throws NullPointerException if fInvalid or fValid is null
-     */
-    default <U> U fold(Function<? super E, ? extends U> fInvalid, Function<? super T, ? extends U> fValid) {
-        Objects.requireNonNull(fInvalid, "fInvalid is null");
-        Objects.requireNonNull(fValid, "fValid is null");
-        if (isInvalid()) {
-            E error = this.getError();
-            return fInvalid.apply(error);
-        } else {
-            T value = this.get();
-            return fValid.apply(value);
-        }
-    }
-
 
     /**
      * Whereas map only performs a mapping on a valid Validation, and mapError performs a mapping on an invalid
@@ -400,6 +326,57 @@ public interface Validation<E, T> {
         }
     }
 
+    // TODO
+    /**
+     * Gets the value if it is a Valid or an value calculated from the error
+     *
+     * @param other a function which converts an error to an alternative value
+     * @return the value, if the underlying Validation is a Valid, or else the alternative value
+     * provided by {@code other} by applying the error.
+     */
+    default T getOrElseGet(Function<? super E, ? extends T> other) {
+        Objects.requireNonNull(other, "other is null");
+        if (isValid()) {
+            return get();
+        } else {
+            return other.apply(getError());
+        }
+    }
+
+    // TODO method naming
+    default  <X extends Throwable> T getOrElseThrow(Function<? super E, ? extends X> exceptionMapper) throws X {
+        if (isValid()) {
+            return get();
+        } else {
+            throw exceptionMapper.apply(getError());
+        }
+    }
+
+    // TODO method naming
+    /**
+     * Performs the given action for the value contained in {@code Valid}, or do nothing
+     * if this is an Invalid.
+     *
+     * @param action the action to be performed on the contained value
+     * @throws NullPointerException if action is null
+     */
+    default void ifPresent(Consumer<? super T> action) {
+        Objects.requireNonNull(action, "action is null");
+        if (isValid()) {
+            action.accept(get());
+        }
+    }
+
+    // TODO
+    /**
+     * Gets the error of this Validation if is an Invalid or throws if this is a Valid
+     *
+     * @return The error of this Invalid
+     * @throws RuntimeException if this is a Valid
+     */
+    E getError();
+
+    // TODO
     /**
      * Applies a function f to the error of this Validation if this is an Invalid. Otherwise does nothing
      * if this is a Valid.
@@ -416,32 +393,6 @@ public interface Validation<E, T> {
             return Validation.invalid(f.apply(error));
         } else {
             return Validation.valid(this.get());
-        }
-    }
-
-    default <U> Validation<List<E>, U> ap(Validation<List<E>, ? extends Function<? super T, ? extends U>> validation) {
-        Objects.requireNonNull(validation, "validation is null");
-        if (isValid()) {
-            if (validation.isValid()) {
-                Function<? super T, ? extends U> f = validation.get();
-                U u = f.apply(this.get());
-                return valid(u);
-            } else {
-                List<E> errors = validation.getError();
-                return invalid(errors);
-            }
-        } else {
-            if (validation.isValid()) {
-                E error = this.getError();
-                List<E> errors = new ArrayList<>();
-                errors.add(error);
-                return invalid(errors);
-            } else {
-                List<E> errors = validation.getError();
-                E error = this.getError();
-                errors.add(error);
-                return invalid(errors);
-            }
         }
     }
 
