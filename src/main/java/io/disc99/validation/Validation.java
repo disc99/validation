@@ -228,6 +228,14 @@ public interface Validation<E, T> {
         return new Builder8<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8);
     }
 
+    static <E, T1, T2, U> Validation<E, U> zip(Validation<E, T1> validation1, Validation<E, T2> validation2, BiFunction<T1, T2, Validation<E, U>> zipper) {
+        if (validation1.isValid() && validation2.isValid()) {
+            return zipper.apply(validation1.get(), validation2.get());
+        }
+        // TODO
+        return null;
+    }
+
     // TODO
     default <U> Validation<List<E>, U> ap(Validation<List<E>, ? extends Function<? super T, ? extends U>> validation) {
         Objects.requireNonNull(validation, "validation is null");
@@ -334,7 +342,7 @@ public interface Validation<E, T> {
      * @return the value, if the underlying Validation is a Valid, or else the alternative value
      * provided by {@code other} by applying the error.
      */
-    default T getOrElseGet(Function<? super E, ? extends T> other) {
+    default T orElseGet(Function<? super E, ? extends T> other) {
         Objects.requireNonNull(other, "other is null");
         if (isValid()) {
             return get();
@@ -344,7 +352,7 @@ public interface Validation<E, T> {
     }
 
     // TODO method naming
-    default  <X extends Throwable> T getOrElseThrow(Function<? super E, ? extends X> exceptionMapper) throws X {
+    default  <X extends Throwable> T orElseThrow(Function<? super E, ? extends X> exceptionMapper) throws X {
         if (isValid()) {
             return get();
         } else {

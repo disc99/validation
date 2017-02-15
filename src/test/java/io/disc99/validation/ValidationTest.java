@@ -3,9 +3,12 @@ package io.disc99.validation;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.Function;
 
 import static io.disc99.validation.Validation.invalid;
 import static io.disc99.validation.Validation.valid;
+import static io.disc99.validation.Validations.isNotEmpty;
+import static io.disc99.validation.Validations.pattern;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -236,6 +239,63 @@ public class ValidationTest {
         @Override
         public String toString() {
             return "Person(" + name + ", " + age + ")";
+        }
+    }
+
+    static class SignUpForm {
+        String name;
+        String pass;
+        String confirmPass;
+        SignUpForm(String name, String pass, String confirmPass) {
+            this.name = name;
+            this.pass = pass;
+            this.confirmPass = confirmPass;
+        }
+    }
+    static class User {
+        String name;
+        String pass;
+        User(String name, String pass) {
+            this.name = name;
+            this.pass = pass;
+        }
+    }
+
+    @Test
+    public void shouldValidateInvalidPersonWithOrder() throws Exception {
+        SignUpForm f1 = new SignUpForm("@Tom", "pass",null);
+        SignUpForm f2 = new SignUpForm("@Tom", "pass","pass");
+        SignUpForm f3 = new SignUpForm("@Tom", "ok_pass","ng_pass");
+        SignUpForm f4 = new SignUpForm("Tom", "ok_pass","ok_pass");
+
+        FormValidator validator = new FormValidator();
+
+        Validation<List<String>, User> v1 = validator.validFrom(f1);
+        Validation<List<String>, User> v2 = validator.validFrom(f2);
+        Validation<List<String>, User> v3 = validator.validFrom(f3);
+        Validation<List<String>, User> v4 = validator.validFrom(f4);
+    }
+
+    static class FormValidator {
+        Validation<List<String>, User> validFrom(SignUpForm form) {
+            return Validation.combine(
+                    validName(form.name),
+                    validPassword(form.pass, form.confirmPass)
+            ).ap(User::new);
+        }
+
+        Validation<String, String> validName(String name) {
+            return isNotEmpty(name);
+        }
+
+        Function<String, Validation<String, String>> passPattern = p -> pattern(p, "[A-Za-z_]");
+
+        Validation<String, String> validPassword(String pass, String confirmPass) {
+            return Validation.zip(
+                    isNotEmpty(pass).flatMap(passPattern),
+                    isNotEmpty(confirmPass).flatMap(passPattern),
+                    (p1, p2) -> p1.equals(p2) ? valid(p1) : invalid("not match the confirmation password")
+            );
         }
     }
 }
