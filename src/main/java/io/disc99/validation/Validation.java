@@ -29,9 +29,13 @@ public interface Validation<E, T> {
      * @return {@code Invalid(error)}
      * @throws NullPointerException if error is null
      */
-    static <E, T> Validation<E, T> invalid(E error) {
+    static <E, T> Validation<E, T> invalid(List<E> error) {
         Objects.requireNonNull(error, "error is null");
         return new Invalid<>(error);
+    }
+
+    static <E, T> Validation<E, T> invalid(E... error) {
+        return invalid(Arrays.asList(error));
     }
 
     /**
@@ -237,7 +241,7 @@ public interface Validation<E, T> {
     }
 
     // TODO
-    default <U> Validation<List<E>, U> ap(Validation<List<E>, ? extends Function<? super T, ? extends U>> validation) {
+    default <U> Validation<E, U> ap(Validation<E, ? extends Function<? super T, ? extends U>> validation) {
         Objects.requireNonNull(validation, "validation is null");
         if (isValid()) {
             if (validation.isValid()) {
@@ -250,14 +254,14 @@ public interface Validation<E, T> {
             }
         } else {
             if (validation.isValid()) {
-                E error = this.getError();
+                List<E> error = this.getError();
                 List<E> errors = new ArrayList<>();
-                errors.add(error);
+                errors.addAll(error);
                 return invalid(errors);
             } else {
                 List<E> errors = validation.getError();
-                E error = this.getError();
-                errors.add(error);
+                List<E> error = this.getError();
+                errors.addAll(error);
                 return invalid(errors);
             }
         }
@@ -322,11 +326,11 @@ public interface Validation<E, T> {
      * @return an instance of Validation&lt;U,R&gt;
      * @throws NullPointerException if invalidMapper or validMapper is null
      */
-    default <E2, T2> Validation<E2, T2> bimap(Function<? super E, ? extends E2> errorMapper, Function<? super T, ? extends T2> valueMapper) {
+    default <E2, T2> Validation<E2, T2> bimap(Function<List<E>, List<E2>> errorMapper, Function<? super T, ? extends T2> valueMapper) {
         Objects.requireNonNull(errorMapper, "errorMapper is null");
         Objects.requireNonNull(valueMapper, "valueMapper is null");
         if (isInvalid()) {
-            E error = this.getError();
+            List<E> error = this.getError();
             return Validation.invalid(errorMapper.apply(error));
         } else {
             T value = this.get();
@@ -342,7 +346,7 @@ public interface Validation<E, T> {
      * @return the value, if the underlying Validation is a Valid, or else the alternative value
      * provided by {@code other} by applying the error.
      */
-    default T orElseGet(Function<? super E, ? extends T> other) {
+    default T orElseGet(Function<List<E>, ? extends T> other) {
         Objects.requireNonNull(other, "other is null");
         if (isValid()) {
             return get();
@@ -352,7 +356,7 @@ public interface Validation<E, T> {
     }
 
     // TODO method naming
-    default  <X extends Throwable> T orElseThrow(Function<? super E, ? extends X> exceptionMapper) throws X {
+    default  <X extends Throwable> T orElseThrow(Function<List<E>, ? extends X> exceptionMapper) throws X {
         if (isValid()) {
             return get();
         } else {
@@ -382,7 +386,7 @@ public interface Validation<E, T> {
      * @return The error of this Invalid
      * @throws RuntimeException if this is a Valid
      */
-    E getError();
+    List<E> getError();
 
     // TODO
     /**
@@ -394,10 +398,10 @@ public interface Validation<E, T> {
      * @return an instance of Validation&lt;U,T&gt;
      * @throws NullPointerException if mapping operation f is null
      */
-    default <U> Validation<U, T> mapError(Function<? super E, ? extends U> f) {
+    default <U> Validation<U, T> mapError(Function<List<E>, List<U>> f) {
         Objects.requireNonNull(f, "f is null");
         if (isInvalid()) {
-            E error = this.getError();
+            List<E> error = this.getError();
             return Validation.invalid(f.apply(error));
         } else {
             return Validation.valid(this.get());
@@ -441,7 +445,7 @@ public interface Validation<E, T> {
         }
 
         @Override
-        public E getError() throws RuntimeException {
+        public List<E> getError() throws RuntimeException {
             throw new NoSuchElementException("error of 'valid' Validation");
         }
 
@@ -472,14 +476,14 @@ public interface Validation<E, T> {
 
         private static final long serialVersionUID = 1L;
 
-        private final E error;
+        private final List<E> error;
 
         /**
          * Construct an {@code Invalid}
          *
          * @param error The value of this error
          */
-        private Invalid(E error) {
+        private Invalid(List<E> error) {
             this.error = error;
         }
 
@@ -499,7 +503,7 @@ public interface Validation<E, T> {
         }
 
         @Override
-        public E getError() {
+        public List<E> getError() {
             return error;
         }
 
@@ -529,7 +533,7 @@ public interface Validation<E, T> {
             this.v2 = v2;
         }
 
-        public <R> Validation<List<E>, R> ap(BiFunction<T1, T2, R> f) {
+        public <R> Validation<E, R> ap(BiFunction<T1, T2, R> f) {
             return v2.ap(v1.ap(Validation.valid(
                     t1 -> t2 -> f.apply(t1, t2)
             )));
@@ -553,7 +557,7 @@ public interface Validation<E, T> {
             this.v3 = v3;
         }
 
-        public <R> Validation<List<E>, R> ap(Function3<T1, T2, T3, R> f) {
+        public <R> Validation<E, R> ap(Function3<T1, T2, T3, R> f) {
             return v3.ap(v2.ap(v1.ap(Validation.valid(
                     t1 -> t2 -> t3 -> f.apply(t1, t2, t3)
             ))));
@@ -579,7 +583,7 @@ public interface Validation<E, T> {
             this.v4 = v4;
         }
 
-        public <R> Validation<List<E>, R> ap(Function4<T1, T2, T3, T4, R> f) {
+        public <R> Validation<E, R> ap(Function4<T1, T2, T3, T4, R> f) {
             return v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> f.apply(t1, t2, t3, t4)
             )))));
@@ -607,7 +611,7 @@ public interface Validation<E, T> {
             this.v5 = v5;
         }
 
-        public <R> Validation<List<E>, R> ap(Function5<T1, T2, T3, T4, T5, R> f) {
+        public <R> Validation<E, R> ap(Function5<T1, T2, T3, T4, T5, R> f) {
             return v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> f.apply(t1, t2, t3, t4, t5)
             ))))));
@@ -637,7 +641,7 @@ public interface Validation<E, T> {
             this.v6 = v6;
         }
 
-        public <R> Validation<List<E>, R> ap(Function6<T1, T2, T3, T4, T5, T6, R> f) {
+        public <R> Validation<E, R> ap(Function6<T1, T2, T3, T4, T5, T6, R> f) {
             return v6.ap(v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> t6 -> f.apply(t1, t2, t3, t4, t5, t6)
             )))))));
@@ -669,7 +673,7 @@ public interface Validation<E, T> {
             this.v7 = v7;
         }
 
-        public <R> Validation<List<E>, R> ap(Function7<T1, T2, T3, T4, T5, T6, T7, R> f) {
+        public <R> Validation<E, R> ap(Function7<T1, T2, T3, T4, T5, T6, T7, R> f) {
             return v7.ap(v6.ap(v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> t6 -> t7 -> f.apply(t1, t2, t3, t4, t5, t6, t7)
             ))))))));
@@ -703,7 +707,7 @@ public interface Validation<E, T> {
             this.v8 = v8;
         }
 
-        public <R> Validation<List<E>, R> ap(Function8<T1, T2, T3, T4, T5, T6, T7, T8, R> f) {
+        public <R> Validation<E, R> ap(Function8<T1, T2, T3, T4, T5, T6, T7, T8, R> f) {
             return v8.ap(v7.ap(v6.ap(v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> t6 -> t7 -> t8 -> f.apply(t1, t2, t3, t4, t5, t6, t7, t8)
             )))))))));

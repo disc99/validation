@@ -27,18 +27,18 @@ public class ValidationTest {
         Validation<String, String> v8 = valid("alt3");
         Validation<String, String> v9 = valid("alt4");
 
-        Validation<List<String>, TestValidation> result = v1.combine(v2).ap(TestValidation::new);
+        Validation<String, TestValidation> result = v1.combine(v2).ap(TestValidation::new);
 
-        Validation<List<String>, TestValidation> result2 = v1.combine(v2).combine(v3).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result3 = v1.combine(v2).combine(v4).ap(TestValidation::new);
+        Validation<String, TestValidation> result2 = v1.combine(v2).combine(v3).ap(TestValidation::new);
+        Validation<String, TestValidation> result3 = v1.combine(v2).combine(v4).ap(TestValidation::new);
 
-        Validation<List<String>, TestValidation> result4 = v1.combine(v2).combine(v3).combine(v5).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result5 = v1.combine(v2).combine(v3).combine(v5).combine(v6).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result6 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result7 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result8 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).combine(v9).ap(TestValidation::new);
+        Validation<String, TestValidation> result4 = v1.combine(v2).combine(v3).combine(v5).ap(TestValidation::new);
+        Validation<String, TestValidation> result5 = v1.combine(v2).combine(v3).combine(v5).combine(v6).ap(TestValidation::new);
+        Validation<String, TestValidation> result6 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).ap(TestValidation::new);
+        Validation<String, TestValidation> result7 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).ap(TestValidation::new);
+        Validation<String, TestValidation> result8 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).combine(v9).ap(TestValidation::new);
 
-        Validation<List<String>, String> result9 = v1.combine(v2).combine(v3).ap((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
+        Validation<String, String> result9 = v1.combine(v2).combine(v3).ap((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
 
         assertThat(result.isValid()).isTrue();
         assertThat(result2.isValid()).isTrue();
@@ -67,16 +67,16 @@ public class ValidationTest {
         Validation<String, String> v9 = valid("alt4");
 
         // Alternative map(n) functions to the 'combine' function
-        Validation<List<String>, TestValidation> result = Validation.combine(v1, v2).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result2 = Validation.combine(v1, v2, v3).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result3 = Validation.combine(v1, v2, v4).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result4 = Validation.combine(v1, v2, v3, v5).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result5 = Validation.combine(v1, v2, v3, v5, v6).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result6 = Validation.combine(v1, v2, v3, v5, v6, v7).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result7 = Validation.combine(v1, v2, v3, v5, v6, v7, v8).ap(TestValidation::new);
-        Validation<List<String>, TestValidation> result8 = Validation.combine(v1, v2, v3, v5, v6, v7, v8, v9).ap(TestValidation::new);
+        Validation<String, TestValidation> result = Validation.combine(v1, v2).ap(TestValidation::new);
+        Validation<String, TestValidation> result2 = Validation.combine(v1, v2, v3).ap(TestValidation::new);
+        Validation<String, TestValidation> result3 = Validation.combine(v1, v2, v4).ap(TestValidation::new);
+        Validation<String, TestValidation> result4 = Validation.combine(v1, v2, v3, v5).ap(TestValidation::new);
+        Validation<String, TestValidation> result5 = Validation.combine(v1, v2, v3, v5, v6).ap(TestValidation::new);
+        Validation<String, TestValidation> result6 = Validation.combine(v1, v2, v3, v5, v6, v7).ap(TestValidation::new);
+        Validation<String, TestValidation> result7 = Validation.combine(v1, v2, v3, v5, v6, v7, v8).ap(TestValidation::new);
+        Validation<String, TestValidation> result8 = Validation.combine(v1, v2, v3, v5, v6, v7, v8, v9).ap(TestValidation::new);
 
-        Validation<List<String>, String> result9 = Validation.combine(v1, v2, v3).ap((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
+        Validation<String, String> result9 = Validation.combine(v1, v2, v3).ap((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
 
         assertThat(result.isValid()).isTrue();
         assertThat(result2.isValid()).isTrue();
@@ -96,8 +96,8 @@ public class ValidationTest {
     public void shouldValidateValidPerson() {
         final String name = "John Doe";
         final int age = 30;
-        final Validation<List<String>, Person> actual = new PersonValidator().validatePerson(name, age);
-        final Validation<List<String>, Person> expected = valid(new Person(name, age));
+        final Validation<String, Person> actual = new PersonValidator().validatePerson(name, age);
+        final Validation<String, Person> expected = valid(new Person(name, age));
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -105,8 +105,8 @@ public class ValidationTest {
     public void shouldValidateInvalidPerson() {
         final String name = "John? Doe!4";
         final int age = -1;
-        final Validation<List<String>, Person> actual = new PersonValidator().validatePerson(name, age);
-        final Validation<List<String>, Person> expected = invalid(Arrays.asList(
+        final Validation<String, Person> actual = new PersonValidator().validatePerson(name, age);
+        final Validation<String, Person> expected = invalid(Arrays.asList(
                 "Name contains invalid characters: '[!, 4, ?]'",
                 "Age must be greater than 0"
         ));
@@ -191,7 +191,7 @@ public class ValidationTest {
         private final String validNameChars = "[a-zA-Z ]";
         private final int minAge = 0;
 
-        public Validation<List<String>, Person> validatePerson(String name, int age) {
+        public Validation<String, Person> validatePerson(String name, int age) {
             return Validation.combine(validateName(name), validateAge(age)).ap(Person::new);
         }
 
@@ -270,14 +270,14 @@ public class ValidationTest {
 
         FormValidator validator = new FormValidator();
 
-        Validation<List<String>, User> v1 = validator.validFrom(f1);
-        Validation<List<String>, User> v2 = validator.validFrom(f2);
-        Validation<List<String>, User> v3 = validator.validFrom(f3);
-        Validation<List<String>, User> v4 = validator.validFrom(f4);
+        Validation<String, User> v1 = validator.validFrom(f1);
+        Validation<String, User> v2 = validator.validFrom(f2);
+        Validation<String, User> v3 = validator.validFrom(f3);
+        Validation<String, User> v4 = validator.validFrom(f4);
     }
 
     static class FormValidator {
-        Validation<List<String>, User> validFrom(SignUpForm form) {
+        Validation<String, User> validFrom(SignUpForm form) {
             return Validation.combine(
                     validName(form.name),
                     validPassword(form.pass, form.confirmPass)
@@ -299,3 +299,49 @@ public class ValidationTest {
         }
     }
 }
+//
+//
+//interface V<E, T> {
+//    static <E, T> V<E, T> valid(T value) {
+//        return new Vd<>(value);
+//    }
+//    static <E, T> V<E, T> invalid(E... errors) {
+//        return new Ivd<>(Arrays.asList(errors));
+//    }
+//
+//    T getValid();
+//    List<E> getInvalid();
+//
+//    static class Vd<E, T> implements V<E, T> {
+//        T value;
+//        Vd(T value) {
+//            this.value = value;
+//        }
+//
+//        @Override
+//        public T getValid() {
+//            return value;
+//        }
+//
+//        @Override
+//        public List<E> getInvalid() {
+//            throw new NoSuchElementException();
+//        }
+//    }
+//    static class Ivd<E, T> implements V<E, T> {
+//        List<E> errors;
+//        Ivd(List<E> errors) {
+//            this.errors = errors;
+//        }
+//
+//        @Override
+//        public T getValid() {
+//            throw new NoSuchElementException();
+//        }
+//
+//        @Override
+//        public List<E> getInvalid() {
+//            return null;
+//        }
+//    }
+//}
