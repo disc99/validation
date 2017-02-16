@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.function.*;
 
+import static java.util.function.Function.identity;
+
 public interface Validation<E, T> {
 
     /**
@@ -233,18 +235,7 @@ public interface Validation<E, T> {
     }
 
     static <E, T1, T2, U> Validation<E, U> zip(Validation<E, T1> validation1, Validation<E, T2> validation2, BiFunction<T1, T2, Validation<E, U>> zipper) {
-        if (validation1.isValid() && validation2.isValid()) {
-            return zipper.apply(validation1.get(), validation2.get());
-        }
-
-        List<E> errors = new ArrayList<>();
-        if (validation1.isInvalid()) {
-            errors.addAll(validation1.getError());
-        }
-        if (validation2.isInvalid()) {
-            errors.addAll(validation2.getError());
-        }
-        return invalid(errors);
+        return combine(validation1, validation2).ap(zipper).flatMap(identity());
     }
 
     // TODO
