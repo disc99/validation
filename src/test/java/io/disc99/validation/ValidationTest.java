@@ -276,11 +276,11 @@ public class ValidationTest {
         Validation<String, User> v4 = validator.validFrom(f4);
 
         assertThat(v1.isInvalid()).isTrue();
-        assertThat(v1.getError()).hasSize(3);
+        assertThat(v1.getViolations()).hasSize(3);
         assertThat(v2.isInvalid()).isTrue();
-        assertThat(v2.getError()).hasSize(3);
+        assertThat(v2.getViolations()).hasSize(3);
         assertThat(v3.isInvalid()).isTrue();
-        assertThat(v3.getError()).hasSize(2);
+        assertThat(v3.getViolations()).hasSize(2);
         assertThat(v4.isValid()).isTrue();
     }
 

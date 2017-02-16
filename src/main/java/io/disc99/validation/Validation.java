@@ -13,7 +13,7 @@ public interface Validation<E, T> {
     /**
      * Creates a {@link Valid} that contains the given {@code value}.
      *
-     * @param <E>   type of the error
+     * @param <E>   type of the violation
      * @param <T>   type of the given {@code value}
      * @param value A value
      * @return {@code Valid(value)}
@@ -23,56 +23,56 @@ public interface Validation<E, T> {
     }
 
     /**
-     * Creates an {@link Invalid} that contains the given {@code error}.
+     * Creates an {@link Invalid} that contains the given {@code violation}.
      *
-     * @param <E>   type of the given {@code error}
+     * @param <E>   type of the given {@code violation}
      * @param <T>   type of the value
-     * @param error An error
-     * @return {@code Invalid(error)}
-     * @throws NullPointerException if error is null
+     * @param violation An violation
+     * @return {@code Invalid(violation)}
+     * @throws NullPointerException if violation is null
      */
-    static <E, T> Validation<E, T> invalid(List<E> error) {
-        Objects.requireNonNull(error, "error is null");
-        return new Invalid<>(error);
+    static <E, T> Validation<E, T> invalid(List<E> violation) {
+        Objects.requireNonNull(violation, "violation is null");
+        return new Invalid<>(violation);
     }
 
-    static <E, T> Validation<E, T> invalid(E... error) {
-        return invalid(Arrays.asList(error));
+    static <E, T> Validation<E, T> invalid(E... violation) {
+        return invalid(Arrays.asList(violation));
     }
 
     /**
-     * Combines two {@code Validation}s to form a {@link Builder}, which can then be used to perform further
-     * combines, or apply a function to it in order to transform the {@link Builder} into a {@code Validation}.
+     * Combines two {@code Validation}s to form a {@link Builder2}, which can then be used to perform further
+     * combines, or apply a function to it in order to transform the {@link Builder2} into a {@code Validation}.
      *
      * @param <U>        type of the value contained in validation
      * @param validation the validation object to combine this with
-     * @return an instance of Builder
+     * @return an instance of Builder2
      */
-    default <U> Builder<E, T, U> combine(Validation<E, U> validation) {
-        return new Builder<>(this, validation);
+    default <U> Builder2<E, T, U> combine(Validation<E, U> validation) {
+        return new Builder2<>(this, validation);
     }
 
     /**
-     * Combines two {@code Validation}s into a {@link Builder}.
+     * Combines two {@code Validation}s into a {@link Builder2}.
      *
-     * @param <E>         type of error
+     * @param <E>         type of violation
      * @param <T1>        type of first valid value
      * @param <T2>        type of second valid value
      * @param validation1 first validation
      * @param validation2 second validation
-     * @return an instance of Builder&lt;E,T1,T2&gt;
+     * @return an instance of Builder2&lt;E,T1,T2&gt;
      * @throws NullPointerException if validation1 or validation2 is null
      */
-    static <E, T1, T2> Builder<E, T1, T2> combine(Validation<E, T1> validation1, Validation<E, T2> validation2) {
+    static <E, T1, T2> Builder2<E, T1, T2> combine(Validation<E, T1> validation1, Validation<E, T2> validation2) {
         Objects.requireNonNull(validation1, "validation1 is null");
         Objects.requireNonNull(validation2, "validation2 is null");
-        return new Builder<>(validation1, validation2);
+        return new Builder2<>(validation1, validation2);
     }
 
     /**
      * Combines three {@code Validation}s into a {@link Builder3}.
      *
-     * @param <E>         type of error
+     * @param <E>         type of violation
      * @param <T1>        type of first valid value
      * @param <T2>        type of second valid value
      * @param <T3>        type of third valid value
@@ -92,7 +92,7 @@ public interface Validation<E, T> {
     /**
      * Combines four {@code Validation}s into a {@link Builder4}.
      *
-     * @param <E>         type of error
+     * @param <E>         type of violation
      * @param <T1>        type of first valid value
      * @param <T2>        type of second valid value
      * @param <T3>        type of third valid value
@@ -115,7 +115,7 @@ public interface Validation<E, T> {
     /**
      * Combines five {@code Validation}s into a {@link Builder5}.
      *
-     * @param <E>         type of error
+     * @param <E>         type of violation
      * @param <T1>        type of first valid value
      * @param <T2>        type of second valid value
      * @param <T3>        type of third valid value
@@ -141,7 +141,7 @@ public interface Validation<E, T> {
     /**
      * Combines six {@code Validation}s into a {@link Builder6}.
      *
-     * @param <E>         type of error
+     * @param <E>         type of violation
      * @param <T1>        type of first valid value
      * @param <T2>        type of second valid value
      * @param <T3>        type of third valid value
@@ -170,7 +170,7 @@ public interface Validation<E, T> {
     /**
      * Combines seven {@code Validation}s into a {@link Builder7}.
      *
-     * @param <E>         type of error
+     * @param <E>         type of violation
      * @param <T1>        type of first valid value
      * @param <T2>        type of second valid value
      * @param <T3>        type of third valid value
@@ -202,7 +202,7 @@ public interface Validation<E, T> {
     /**
      * Combines eight {@code Validation}s into a {@link Builder8}.
      *
-     * @param <E>         type of error
+     * @param <E>         type of violation
      * @param <T1>        type of first valid value
      * @param <T2>        type of second valid value
      * @param <T3>        type of third valid value
@@ -247,17 +247,17 @@ public interface Validation<E, T> {
                 U u = f.apply(this.get());
                 return valid(u);
             } else {
-                return invalid(validation.getError());
+                return invalid(validation.getViolations());
             }
         } else {
             if (validation.isValid()) {
-                List<E> errors = new ArrayList<>(this.getError());
-                return invalid(errors);
+                List<E> violations = new ArrayList<>(this.getViolations());
+                return invalid(violations);
             } else {
-                List<E> errors = validation.getError();
-                List<E> error = this.getError();
-                errors.addAll(error);
-                return invalid(errors);
+                List<E> violations = validation.getViolations();
+                List<E> violation = this.getViolations();
+                violations.addAll(violation);
+                return invalid(violations);
             }
         }
     }
@@ -294,7 +294,7 @@ public interface Validation<E, T> {
     default <U> Validation<E, U> map(Function<? super T, ? extends U> f) {
         Objects.requireNonNull(f, "f is null");
         if (isInvalid()) {
-            return Validation.invalid(this.getError());
+            return Validation.invalid(this.getViolations());
         } else {
             T value = this.get();
             return Validation.valid(f.apply(value));
@@ -308,25 +308,25 @@ public interface Validation<E, T> {
     }
 
     /**
-     * Whereas map only performs a mapping on a valid Validation, and mapError performs a mapping on an invalid
+     * Whereas map only performs a mapping on a valid Validation, and mapViolations performs a mapping on an invalid
      * Validation, bimap allows you to provide mapping actions for both, and will give you the result based
      * on what type of Validation this is. Without this, you would have to do something like:
      *
-     * validation.map(...).mapError(...);
+     * validation.map(...).mapViolations(...);
      *
      * @param <E2>        type of the mapping result if this is an invalid
      * @param <T2>        type of the mapping result if this is a valid
-     * @param errorMapper the invalid mapping operation
+     * @param violationMapper the invalid mapping operation
      * @param valueMapper the valid mapping operation
      * @return an instance of Validation&lt;U,R&gt;
      * @throws NullPointerException if invalidMapper or validMapper is null
      */
-    default <E2, T2> Validation<E2, T2> bimap(Function<List<E>, List<E2>> errorMapper, Function<? super T, ? extends T2> valueMapper) {
-        Objects.requireNonNull(errorMapper, "errorMapper is null");
+    default <E2, T2> Validation<E2, T2> bimap(Function<List<E>, List<E2>> violationMapper, Function<? super T, ? extends T2> valueMapper) {
+        Objects.requireNonNull(violationMapper, "violationMapper is null");
         Objects.requireNonNull(valueMapper, "valueMapper is null");
         if (isInvalid()) {
-            List<E> error = this.getError();
-            return Validation.invalid(errorMapper.apply(error));
+            List<E> violation = this.getViolations();
+            return Validation.invalid(violationMapper.apply(violation));
         } else {
             T value = this.get();
             return Validation.valid(valueMapper.apply(value));
@@ -335,18 +335,18 @@ public interface Validation<E, T> {
 
     // TODO
     /**
-     * Gets the value if it is a Valid or an value calculated from the error
+     * Gets the value if it is a Valid or an value calculated from the violation
      *
-     * @param other a function which converts an error to an alternative value
+     * @param other a function which converts an violation to an alternative value
      * @return the value, if the underlying Validation is a Valid, or else the alternative value
-     * provided by {@code other} by applying the error.
+     * provided by {@code other} by applying the violation.
      */
     default T orElseGet(Function<List<E>, ? extends T> other) {
         Objects.requireNonNull(other, "other is null");
         if (isValid()) {
             return get();
         } else {
-            return other.apply(getError());
+            return other.apply(getViolations());
         }
     }
 
@@ -355,7 +355,7 @@ public interface Validation<E, T> {
         if (isValid()) {
             return get();
         } else {
-            throw exceptionMapper.apply(getError());
+            throw exceptionMapper.apply(getViolations());
         }
     }
 
@@ -376,28 +376,28 @@ public interface Validation<E, T> {
 
     // TODO
     /**
-     * Gets the error of this Validation if is an Invalid or throws if this is a Valid
+     * Gets the violation of this Validation if is an Invalid or throws if this is a Valid
      *
-     * @return The error of this Invalid
+     * @return The violation of this Invalid
      * @throws RuntimeException if this is a Valid
      */
-    List<E> getError();
+    List<E> getViolations();
 
     // TODO
     /**
-     * Applies a function f to the error of this Validation if this is an Invalid. Otherwise does nothing
+     * Applies a function f to the violation of this Validation if this is an Invalid. Otherwise does nothing
      * if this is a Valid.
      *
-     * @param <U> type of the error resulting from the mapping
-     * @param f   a function that maps the error in this Invalid
+     * @param <U> type of the violation resulting from the mapping
+     * @param f   a function that maps the violation in this Invalid
      * @return an instance of Validation&lt;U,T&gt;
      * @throws NullPointerException if mapping operation f is null
      */
-    default <U> Validation<U, T> mapError(Function<List<E>, List<U>> f) {
+    default <U> Validation<U, T> mapViolations(Function<List<E>, List<U>> f) {
         Objects.requireNonNull(f, "f is null");
         if (isInvalid()) {
-            List<E> error = this.getError();
-            return Validation.invalid(f.apply(error));
+            List<E> violation = this.getViolations();
+            return Validation.invalid(f.apply(violation));
         } else {
             return Validation.valid(this.get());
         }
@@ -406,7 +406,7 @@ public interface Validation<E, T> {
     /**
      * A valid Validation
      *
-     * @param <E> type of the error of this Validation
+     * @param <E> type of the violation of this Validation
      * @param <T> type of the value of this Validation
      */
     final class Valid<E, T> implements Validation<E, T>, Serializable {
@@ -440,8 +440,8 @@ public interface Validation<E, T> {
         }
 
         @Override
-        public List<E> getError() throws RuntimeException {
-            throw new NoSuchElementException("error of 'valid' Validation");
+        public List<E> getViolations() throws RuntimeException {
+            throw new NoSuchElementException("violation of 'valid' Validation");
         }
 
         @Override
@@ -464,22 +464,22 @@ public interface Validation<E, T> {
     /**
      * An invalid Validation
      *
-     * @param <E> type of the error of this Validation
+     * @param <E> type of the violation of this Validation
      * @param <T> type of the value of this Validation
      */
     final class Invalid<E, T> implements Validation<E, T>, Serializable {
 
         private static final long serialVersionUID = 1L;
 
-        private final List<E> error;
+        private final List<E> violation;
 
         /**
          * Construct an {@code Invalid}
          *
-         * @param error The value of this error
+         * @param violations The value of this violations
          */
-        private Invalid(List<E> error) {
-            this.error = error;
+        private Invalid(List<E> violations) {
+            this.violation = violations;
         }
 
         @Override
@@ -498,32 +498,32 @@ public interface Validation<E, T> {
         }
 
         @Override
-        public List<E> getError() {
-            return error;
+        public List<E> getViolations() {
+            return violation;
         }
 
         @Override
         public boolean equals(Object obj) {
-            return (obj == this) || (obj instanceof Invalid && Objects.equals(error, ((Invalid<?, ?>) obj).error));
+            return (obj == this) || (obj instanceof Invalid && Objects.equals(violation, ((Invalid<?, ?>) obj).violation));
         }
 
         @Override
         public int hashCode() {
-            return Objects.hashCode(error);
+            return Objects.hashCode(violation);
         }
 
         @Override
         public String toString() {
-            return "Invalid(" + error + ")";
+            return "Invalid(" + violation + ")";
         }
     }
 
-    final class Builder<E, T1, T2> {
+    final class Builder2<E, T1, T2> {
 
         private Validation<E, T1> v1;
         private Validation<E, T2> v2;
 
-        private Builder(Validation<E, T1> v1, Validation<E, T2> v2) {
+        private Builder2(Validation<E, T1> v1, Validation<E, T2> v2) {
             this.v1 = v1;
             this.v2 = v2;
         }
