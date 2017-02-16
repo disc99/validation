@@ -24,19 +24,25 @@ public final class Validations {
     }
 
     public static Validation<String, String> pattern(String target, String regexp) {
-        return Pattern.compile(regexp).matcher(target).find()
-                ? invalid(String.format("must match \"%s\"", regexp))
-                : valid(target);
+        return Pattern.matches(regexp, target)
+                ? valid(target)
+                : invalid(String.format("must match \"%s\"", regexp));
+    }
+
+    public static Validation<String, Integer> size(Integer target, Integer min, Integer max) {
+        return target >= min && target <= max
+                ? valid(target)
+                : invalid(String.format("size must be between %s and %s", min, max));
     }
 
     public static Validation<String, Long> size(Long target, Long min, Long max) {
-        return target <= min && target >= max
+        return target >= min && target <= max
                 ? valid(target)
                 : invalid(String.format("size must be between %s and %s", min, max));
     }
 
     public static Validation<String, Double> size(Double target, Double min, Double max) {
-        return target <= min && target >= max
+        return target >= min && target <= max
                 ? valid(target)
                 : invalid(String.format("size must be between %s and %s", min, max));
     }

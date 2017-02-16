@@ -236,8 +236,15 @@ public interface Validation<E, T> {
         if (validation1.isValid() && validation2.isValid()) {
             return zipper.apply(validation1.get(), validation2.get());
         }
-        // TODO
-        return null;
+
+        List<E> errors = new ArrayList<>();
+        if (validation1.isInvalid()) {
+            errors.addAll(validation1.getError());
+        }
+        if (validation2.isInvalid()) {
+            errors.addAll(validation2.getError());
+        }
+        return invalid(errors);
     }
 
     // TODO

@@ -263,9 +263,9 @@ public class ValidationTest {
 
     @Test
     public void shouldValidateInvalidPersonWithOrder() throws Exception {
-        SignUpForm f1 = new SignUpForm("@Tom", "pass",null);
-        SignUpForm f2 = new SignUpForm("@Tom", "pass","pass");
-        SignUpForm f3 = new SignUpForm("@Tom", "ok_pass","ng_pass");
+        SignUpForm f1 = new SignUpForm("", "pass",null);
+        SignUpForm f2 = new SignUpForm("", "pass","pass");
+        SignUpForm f3 = new SignUpForm("", "ok_pass","ng_pass");
         SignUpForm f4 = new SignUpForm("Tom", "ok_pass","ok_pass");
 
         FormValidator validator = new FormValidator();
@@ -274,6 +274,14 @@ public class ValidationTest {
         Validation<String, User> v2 = validator.validFrom(f2);
         Validation<String, User> v3 = validator.validFrom(f3);
         Validation<String, User> v4 = validator.validFrom(f4);
+
+        assertThat(v1.isInvalid()).isTrue();
+        assertThat(v1.getError()).hasSize(3);
+        assertThat(v2.isInvalid()).isTrue();
+        assertThat(v2.getError()).hasSize(3);
+        assertThat(v3.isInvalid()).isTrue();
+        assertThat(v3.getError()).hasSize(2);
+        assertThat(v4.isValid()).isTrue();
     }
 
     static class FormValidator {
@@ -288,60 +296,15 @@ public class ValidationTest {
             return isNotEmpty(name);
         }
 
-        Function<String, Validation<String, String>> passPattern = p -> pattern(p, "[A-Za-z_]");
+        Function<String, Validation<String, String>> passSize = p -> Validations.size(p.length(), 6, 20).map(l -> p);
+        Function<String, Validation<String, String>> passPattern = p -> pattern(p, "[a-zA-Z_]*");
 
         Validation<String, String> validPassword(String pass, String confirmPass) {
             return Validation.zip(
-                    isNotEmpty(pass).flatMap(passPattern),
-                    isNotEmpty(confirmPass).flatMap(passPattern),
+                    isNotEmpty(pass).flatMap(passSize).flatMap(passPattern),
+                    isNotEmpty(confirmPass).flatMap(passSize).flatMap(passPattern),
                     (p1, p2) -> p1.equals(p2) ? valid(p1) : invalid("not match the confirmation password")
             );
         }
     }
 }
-//
-//
-//interface V<E, T> {
-//    static <E, T> V<E, T> valid(T value) {
-//        return new Vd<>(value);
-//    }
-//    static <E, T> V<E, T> invalid(E... errors) {
-//        return new Ivd<>(Arrays.asList(errors));
-//    }
-//
-//    T getValid();
-//    List<E> getInvalid();
-//
-//    static class Vd<E, T> implements V<E, T> {
-//        T value;
-//        Vd(T value) {
-//            this.value = value;
-//        }
-//
-//        @Override
-//        public T getValid() {
-//            return value;
-//        }
-//
-//        @Override
-//        public List<E> getInvalid() {
-//            throw new NoSuchElementException();
-//        }
-//    }
-//    static class Ivd<E, T> implements V<E, T> {
-//        List<E> errors;
-//        Ivd(List<E> errors) {
-//            this.errors = errors;
-//        }
-//
-//        @Override
-//        public T getValid() {
-//            throw new NoSuchElementException();
-//        }
-//
-//        @Override
-//        public List<E> getInvalid() {
-//            return null;
-//        }
-//    }
-//}
