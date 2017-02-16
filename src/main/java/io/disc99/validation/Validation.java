@@ -235,11 +235,11 @@ public interface Validation<E, T> {
     }
 
     static <E, T1, T2, U> Validation<E, U> zip(Validation<E, T1> validation1, Validation<E, T2> validation2, BiFunction<T1, T2, Validation<E, U>> zipper) {
-        return combine(validation1, validation2).ap(zipper).flatMap(identity());
+        return combine(validation1, validation2).apply(zipper).flatMap(identity());
     }
 
     // TODO
-    default <U> Validation<E, U> ap(Validation<E, ? extends Function<? super T, ? extends U>> validation) {
+    default <U> Validation<E, U> apply(Validation<E, ? extends Function<? super T, ? extends U>> validation) {
         Objects.requireNonNull(validation, "validation is null");
         if (isValid()) {
             if (validation.isValid()) {
@@ -247,14 +247,11 @@ public interface Validation<E, T> {
                 U u = f.apply(this.get());
                 return valid(u);
             } else {
-                List<E> errors = validation.getError();
-                return invalid(errors);
+                return invalid(validation.getError());
             }
         } else {
             if (validation.isValid()) {
-                List<E> error = this.getError();
-                List<E> errors = new ArrayList<>();
-                errors.addAll(error);
+                List<E> errors = new ArrayList<>(this.getError());
                 return invalid(errors);
             } else {
                 List<E> errors = validation.getError();
@@ -370,7 +367,7 @@ public interface Validation<E, T> {
      * @param action the action to be performed on the contained value
      * @throws NullPointerException if action is null
      */
-    default void ifPresent(Consumer<? super T> action) {
+    default void ifValid(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isValid()) {
             action.accept(get());
@@ -531,8 +528,8 @@ public interface Validation<E, T> {
             this.v2 = v2;
         }
 
-        public <R> Validation<E, R> ap(BiFunction<T1, T2, R> f) {
-            return v2.ap(v1.ap(Validation.valid(
+        public <R> Validation<E, R> apply(BiFunction<T1, T2, R> f) {
+            return v2.apply(v1.apply(Validation.valid(
                     t1 -> t2 -> f.apply(t1, t2)
             )));
         }
@@ -555,8 +552,8 @@ public interface Validation<E, T> {
             this.v3 = v3;
         }
 
-        public <R> Validation<E, R> ap(Function3<T1, T2, T3, R> f) {
-            return v3.ap(v2.ap(v1.ap(Validation.valid(
+        public <R> Validation<E, R> apply(Function3<T1, T2, T3, R> f) {
+            return v3.apply(v2.apply(v1.apply(Validation.valid(
                     t1 -> t2 -> t3 -> f.apply(t1, t2, t3)
             ))));
         }
@@ -581,8 +578,8 @@ public interface Validation<E, T> {
             this.v4 = v4;
         }
 
-        public <R> Validation<E, R> ap(Function4<T1, T2, T3, T4, R> f) {
-            return v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
+        public <R> Validation<E, R> apply(Function4<T1, T2, T3, T4, R> f) {
+            return v4.apply(v3.apply(v2.apply(v1.apply(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> f.apply(t1, t2, t3, t4)
             )))));
         }
@@ -609,8 +606,8 @@ public interface Validation<E, T> {
             this.v5 = v5;
         }
 
-        public <R> Validation<E, R> ap(Function5<T1, T2, T3, T4, T5, R> f) {
-            return v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
+        public <R> Validation<E, R> apply(Function5<T1, T2, T3, T4, T5, R> f) {
+            return v5.apply(v4.apply(v3.apply(v2.apply(v1.apply(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> f.apply(t1, t2, t3, t4, t5)
             ))))));
         }
@@ -639,8 +636,8 @@ public interface Validation<E, T> {
             this.v6 = v6;
         }
 
-        public <R> Validation<E, R> ap(Function6<T1, T2, T3, T4, T5, T6, R> f) {
-            return v6.ap(v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
+        public <R> Validation<E, R> apply(Function6<T1, T2, T3, T4, T5, T6, R> f) {
+            return v6.apply(v5.apply(v4.apply(v3.apply(v2.apply(v1.apply(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> t6 -> f.apply(t1, t2, t3, t4, t5, t6)
             )))))));
         }
@@ -671,8 +668,8 @@ public interface Validation<E, T> {
             this.v7 = v7;
         }
 
-        public <R> Validation<E, R> ap(Function7<T1, T2, T3, T4, T5, T6, T7, R> f) {
-            return v7.ap(v6.ap(v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
+        public <R> Validation<E, R> apply(Function7<T1, T2, T3, T4, T5, T6, T7, R> f) {
+            return v7.apply(v6.apply(v5.apply(v4.apply(v3.apply(v2.apply(v1.apply(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> t6 -> t7 -> f.apply(t1, t2, t3, t4, t5, t6, t7)
             ))))))));
         }
@@ -705,8 +702,8 @@ public interface Validation<E, T> {
             this.v8 = v8;
         }
 
-        public <R> Validation<E, R> ap(Function8<T1, T2, T3, T4, T5, T6, T7, T8, R> f) {
-            return v8.ap(v7.ap(v6.ap(v5.ap(v4.ap(v3.ap(v2.ap(v1.ap(Validation.valid(
+        public <R> Validation<E, R> apply(Function8<T1, T2, T3, T4, T5, T6, T7, T8, R> f) {
+            return v8.apply(v7.apply(v6.apply(v5.apply(v4.apply(v3.apply(v2.apply(v1.apply(Validation.valid(
                     t1 -> t2 -> t3 -> t4 -> t5 -> t6 -> t7 -> t8 -> f.apply(t1, t2, t3, t4, t5, t6, t7, t8)
             )))))))));
         }

@@ -27,18 +27,18 @@ public class ValidationTest {
         Validation<String, String> v8 = valid("alt3");
         Validation<String, String> v9 = valid("alt4");
 
-        Validation<String, TestValidation> result = v1.combine(v2).ap(TestValidation::new);
+        Validation<String, TestValidation> result = v1.combine(v2).apply(TestValidation::new);
 
-        Validation<String, TestValidation> result2 = v1.combine(v2).combine(v3).ap(TestValidation::new);
-        Validation<String, TestValidation> result3 = v1.combine(v2).combine(v4).ap(TestValidation::new);
+        Validation<String, TestValidation> result2 = v1.combine(v2).combine(v3).apply(TestValidation::new);
+        Validation<String, TestValidation> result3 = v1.combine(v2).combine(v4).apply(TestValidation::new);
 
-        Validation<String, TestValidation> result4 = v1.combine(v2).combine(v3).combine(v5).ap(TestValidation::new);
-        Validation<String, TestValidation> result5 = v1.combine(v2).combine(v3).combine(v5).combine(v6).ap(TestValidation::new);
-        Validation<String, TestValidation> result6 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).ap(TestValidation::new);
-        Validation<String, TestValidation> result7 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).ap(TestValidation::new);
-        Validation<String, TestValidation> result8 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).combine(v9).ap(TestValidation::new);
+        Validation<String, TestValidation> result4 = v1.combine(v2).combine(v3).combine(v5).apply(TestValidation::new);
+        Validation<String, TestValidation> result5 = v1.combine(v2).combine(v3).combine(v5).combine(v6).apply(TestValidation::new);
+        Validation<String, TestValidation> result6 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).apply(TestValidation::new);
+        Validation<String, TestValidation> result7 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).apply(TestValidation::new);
+        Validation<String, TestValidation> result8 = v1.combine(v2).combine(v3).combine(v5).combine(v6).combine(v7).combine(v8).combine(v9).apply(TestValidation::new);
 
-        Validation<String, String> result9 = v1.combine(v2).combine(v3).ap((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
+        Validation<String, String> result9 = v1.combine(v2).combine(v3).apply((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
 
         assertThat(result.isValid()).isTrue();
         assertThat(result2.isValid()).isTrue();
@@ -67,16 +67,16 @@ public class ValidationTest {
         Validation<String, String> v9 = valid("alt4");
 
         // Alternative map(n) functions to the 'combine' function
-        Validation<String, TestValidation> result = Validation.combine(v1, v2).ap(TestValidation::new);
-        Validation<String, TestValidation> result2 = Validation.combine(v1, v2, v3).ap(TestValidation::new);
-        Validation<String, TestValidation> result3 = Validation.combine(v1, v2, v4).ap(TestValidation::new);
-        Validation<String, TestValidation> result4 = Validation.combine(v1, v2, v3, v5).ap(TestValidation::new);
-        Validation<String, TestValidation> result5 = Validation.combine(v1, v2, v3, v5, v6).ap(TestValidation::new);
-        Validation<String, TestValidation> result6 = Validation.combine(v1, v2, v3, v5, v6, v7).ap(TestValidation::new);
-        Validation<String, TestValidation> result7 = Validation.combine(v1, v2, v3, v5, v6, v7, v8).ap(TestValidation::new);
-        Validation<String, TestValidation> result8 = Validation.combine(v1, v2, v3, v5, v6, v7, v8, v9).ap(TestValidation::new);
+        Validation<String, TestValidation> result = Validation.combine(v1, v2).apply(TestValidation::new);
+        Validation<String, TestValidation> result2 = Validation.combine(v1, v2, v3).apply(TestValidation::new);
+        Validation<String, TestValidation> result3 = Validation.combine(v1, v2, v4).apply(TestValidation::new);
+        Validation<String, TestValidation> result4 = Validation.combine(v1, v2, v3, v5).apply(TestValidation::new);
+        Validation<String, TestValidation> result5 = Validation.combine(v1, v2, v3, v5, v6).apply(TestValidation::new);
+        Validation<String, TestValidation> result6 = Validation.combine(v1, v2, v3, v5, v6, v7).apply(TestValidation::new);
+        Validation<String, TestValidation> result7 = Validation.combine(v1, v2, v3, v5, v6, v7, v8).apply(TestValidation::new);
+        Validation<String, TestValidation> result8 = Validation.combine(v1, v2, v3, v5, v6, v7, v8, v9).apply(TestValidation::new);
 
-        Validation<String, String> result9 = Validation.combine(v1, v2, v3).ap((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
+        Validation<String, String> result9 = Validation.combine(v1, v2, v3).apply((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
 
         assertThat(result.isValid()).isTrue();
         assertThat(result2.isValid()).isTrue();
@@ -192,7 +192,7 @@ public class ValidationTest {
         private final int minAge = 0;
 
         public Validation<String, Person> validatePerson(String name, int age) {
-            return Validation.combine(validateName(name), validateAge(age)).ap(Person::new);
+            return Validation.combine(validateName(name), validateAge(age)).apply(Person::new);
         }
 
         private Validation<String, String> validateName(String name) {
@@ -289,7 +289,7 @@ public class ValidationTest {
             return Validation.combine(
                     validName(form.name),
                     validPassword(form.pass, form.confirmPass)
-            ).ap(User::new);
+            ).apply(User::new);
         }
 
         Validation<String, String> validName(String name) {
