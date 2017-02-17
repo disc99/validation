@@ -23,28 +23,37 @@ public interface Validation<E, T> {
     }
 
     /**
-     * Creates an {@link Invalid} that contains the given {@code violation}.
+     * Creates an {@link Invalid} that contains the given {@code violations}.
      *
-     * @param <E>   type of the given {@code violation}
+     * @param <E>   type of the given {@code violations}
      * @param <T>   type of the value
-     * @param violation An violation
-     * @return {@code Invalid(violation)}
-     * @throws NullPointerException if violation is null
+     * @param violations An violations
+     * @return {@code Invalid(violations)}
+     * @throws NullPointerException if violations is null
      */
-    static <E, T> Validation<E, T> invalid(List<E> violation) {
-        Objects.requireNonNull(violation, "violation is null");
-        return new Invalid<>(violation);
+    static <E, T> Validation<E, T> invalid(List<E> violations) {
+        Objects.requireNonNull(violations, "violations is null");
+        return new Invalid<>(violations);
     }
 
-    static <E, T> Validation<E, T> invalid(E... violation) {
-        return invalid(Arrays.asList(violation));
+    /**
+     * Creates an {@link Invalid} that contains the given {@code violations}.
+     *
+     * @param <E>   type of the given {@code violations}
+     * @param <T>   type of the value
+     * @param violations An violations
+     * @return {@code Invalid(violations)}
+     * @throws NullPointerException if violations is null
+     */
+    @SafeVarargs
+    static <E, T> Validation<E, T> invalid(E... violations) {
+        return invalid(Arrays.asList(violations));
     }
 
     static <E, T1, T2, U> Validation<E, U> zip(Validation<E, T1> validation1, Validation<E, T2> validation2, BiFunction<T1, T2, Validation<E, U>> zipper) {
         return combine(validation1, validation2).apply(zipper).flatMap(identity());
     }
 
-    // TODO
     default <U> Validation<E, U> apply(Validation<E, ? extends Function<? super T, ? extends U>> validation) {
         Objects.requireNonNull(validation, "validation is null");
         if (isValid()) {
@@ -139,7 +148,6 @@ public interface Validation<E, T> {
         }
     }
 
-    // TODO
     /**
      * Gets the value if it is a Valid or an value calculated from the violation
      *
@@ -147,7 +155,7 @@ public interface Validation<E, T> {
      * @return the value, if the underlying Validation is a Valid, or else the alternative value
      * provided by {@code other} by applying the violation.
      */
-    default T orElseGet(Function<List<E>, ? extends T> other) {
+    default T orInvalidGet(Function<List<E>, ? extends T> other) {
         Objects.requireNonNull(other, "other is null");
         if (isValid()) {
             return get();
@@ -156,8 +164,7 @@ public interface Validation<E, T> {
         }
     }
 
-    // TODO method naming
-    default  <X extends Throwable> T orElseThrow(Function<List<E>, ? extends X> exceptionMapper) throws X {
+    default  <X extends Throwable> T orInvalidThrow(Function<List<E>, ? extends X> exceptionMapper) throws X {
         if (isValid()) {
             return get();
         } else {
@@ -165,7 +172,6 @@ public interface Validation<E, T> {
         }
     }
 
-    // TODO method naming
     /**
      * Performs the given action for the value contained in {@code Valid}, or do nothing
      * if this is an Invalid.
@@ -180,7 +186,6 @@ public interface Validation<E, T> {
         }
     }
 
-    // TODO
     /**
      * Gets the violation of this Validation if is an Invalid or throws if this is a Valid
      *
