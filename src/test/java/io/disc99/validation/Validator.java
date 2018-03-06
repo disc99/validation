@@ -8,61 +8,59 @@ import java.util.regex.Pattern;
 import static io.disc99.validation.Validation.invalid;
 import static io.disc99.validation.Validation.valid;
 
-public final class Validations {
+public interface Validator {
 
-    private Validations() {}
-
-    public static <T> Validation<String, T> isNotNull(T target) {
+    default  <T> Validation<String, T> isNotNull(T target) {
         return target == null ? invalid("may not be null") : valid(target);
     }
 
-    public static Validation<String, String> equal(String target1, String target2) {
+    default Validation<String, String> equal(String target1, String target2) {
         return Objects.equals(target1, target2) ? valid(target1) : invalid("not equal");
     }
 
-    public static Validation<String, String> required(String target) {
+    default Validation<String, String> required(String target) {
         return Util.isEmpty(target) ? invalid("may not be empty") : valid(target);
     }
 
-    public static Validation<String, String> isNotEmpty(String target) {
+    default Validation<String, String> isNotEmpty(String target) {
         return Util.isEmpty(target) ? invalid("may not be empty") : valid(target);
     }
 
-    public static Validation<String, String> isNumeric(String target) {
+    default Validation<String, String> isNumeric(String target) {
         return Util.isNumeric(target) ? invalid("my not be number") : valid(target);
     }
 
-    public static Validation<String, String> pattern(String target, String regexp) {
+    default Validation<String, String> pattern(String target, String regexp) {
         return Pattern.matches(regexp, target)
                 ? valid(target)
                 : invalid(String.format("must match \"%s\"", regexp));
     }
 
-    public static Validation<String, Integer> size(Integer target, Integer min, Integer max) {
+    default Validation<String, Integer> size(Integer target, Integer min, Integer max) {
         return target >= min && target <= max
                 ? valid(target)
                 : invalid(String.format("size must be between %s and %s", min, max));
     }
 
-    public static Validation<String, Long> size(Long target, Long min, Long max) {
+    default Validation<String, Long> size(Long target, Long min, Long max) {
         return target >= min && target <= max
                 ? valid(target)
                 : invalid(String.format("size must be between %s and %s", min, max));
     }
 
-    public static Validation<String, Double> size(Double target, Double min, Double max) {
+    default Validation<String, Double> size(Double target, Double min, Double max) {
         return target >= min && target <= max
                 ? valid(target)
                 : invalid(String.format("size must be between %s and %s", min, max));
     }
 
-    public static Validation<String, BigInteger> size(BigInteger target, BigInteger min, BigInteger max) {
+    default Validation<String, BigInteger> size(BigInteger target, BigInteger min, BigInteger max) {
         return target.compareTo(min) <= 0 && target.compareTo(max) >= 0
                 ? valid(target)
                 : invalid(String.format("size must be between %s and %s", min, max));
     }
 
-    public static Validation<String, BigDecimal> size(BigDecimal target, BigDecimal min, BigDecimal max) {
+    default Validation<String, BigDecimal> size(BigDecimal target, BigDecimal min, BigDecimal max) {
         return target.compareTo(min) <= 0 && target.compareTo(max) >= 0
                 ? valid(target)
                 : invalid(String.format("size must be between %s and %s", min, max));

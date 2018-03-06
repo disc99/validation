@@ -5,10 +5,9 @@ import org.junit.Test;
 import java.util.*;
 import java.util.function.Function;
 
+import static io.disc99.validation.Validation.combine;
 import static io.disc99.validation.Validation.invalid;
 import static io.disc99.validation.Validation.valid;
-import static io.disc99.validation.Validations.isNotEmpty;
-import static io.disc99.validation.Validations.pattern;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -67,16 +66,16 @@ public class ValidationTest {
         Validation<String, String> v9 = valid("alt4");
 
         // Alternative map(n) functions to the 'combine' function
-        Validation<String, TestValidation> result = Validation.combine(v1, v2).apply(TestValidation::new);
-        Validation<String, TestValidation> result2 = Validation.combine(v1, v2, v3).apply(TestValidation::new);
-        Validation<String, TestValidation> result3 = Validation.combine(v1, v2, v4).apply(TestValidation::new);
-        Validation<String, TestValidation> result4 = Validation.combine(v1, v2, v3, v5).apply(TestValidation::new);
-        Validation<String, TestValidation> result5 = Validation.combine(v1, v2, v3, v5, v6).apply(TestValidation::new);
-        Validation<String, TestValidation> result6 = Validation.combine(v1, v2, v3, v5, v6, v7).apply(TestValidation::new);
-        Validation<String, TestValidation> result7 = Validation.combine(v1, v2, v3, v5, v6, v7, v8).apply(TestValidation::new);
-        Validation<String, TestValidation> result8 = Validation.combine(v1, v2, v3, v5, v6, v7, v8, v9).apply(TestValidation::new);
+        Validation<String, TestValidation> result = combine(v1, v2).apply(TestValidation::new);
+        Validation<String, TestValidation> result2 = combine(v1, v2, v3).apply(TestValidation::new);
+        Validation<String, TestValidation> result3 = combine(v1, v2, v4).apply(TestValidation::new);
+        Validation<String, TestValidation> result4 = combine(v1, v2, v3, v5).apply(TestValidation::new);
+        Validation<String, TestValidation> result5 = combine(v1, v2, v3, v5, v6).apply(TestValidation::new);
+        Validation<String, TestValidation> result6 = combine(v1, v2, v3, v5, v6, v7).apply(TestValidation::new);
+        Validation<String, TestValidation> result7 = combine(v1, v2, v3, v5, v6, v7, v8).apply(TestValidation::new);
+        Validation<String, TestValidation> result8 = combine(v1, v2, v3, v5, v6, v7, v8, v9).apply(TestValidation::new);
 
-        Validation<String, String> result9 = Validation.combine(v1, v2, v3).apply((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
+        Validation<String, String> result9 = combine(v1, v2, v3).apply((p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
 
         assertThat(result.isValid()).isTrue();
         assertThat(result2.isValid()).isTrue();
@@ -192,7 +191,7 @@ public class ValidationTest {
         private final int minAge = 0;
 
         public Validation<String, Person> validatePerson(String name, int age) {
-            return Validation.combine(validateName(name), validateAge(age)).apply(Person::new);
+            return combine(validateName(name), validateAge(age)).apply(Person::new);
         }
 
         private Validation<String, String> validateName(String name) {
@@ -284,9 +283,24 @@ public class ValidationTest {
         assertThat(v4.isValid()).isTrue();
     }
 
-    static class FormValidator {
+    static class UserName {
+        String name;
+
+        public UserName(String name) {
+            this.name = name;
+        }
+    }
+    static class UserPassword {
+        String pass;
+
+        public UserPassword(String pass) {
+            this.pass = pass;
+        }
+    }
+
+    static class FormValidator implements Validator {
         Validation<String, User> validFrom(SignUpForm form) {
-            return Validation.combine(
+            return combine(
                     validName(form.name),
                     validPassword(form.pass, form.confirmPass)
             ).apply(User::new);
@@ -296,7 +310,7 @@ public class ValidationTest {
             return isNotEmpty(name);
         }
 
-        Function<String, Validation<String, String>> passSize = p -> Validations.size(p.length(), 6, 20).map(l -> p);
+        Function<String, Validation<String, String>> passSize = p -> size(p.length(), 6, 20).map(l -> p);
         Function<String, Validation<String, String>> passPattern = p -> pattern(p, "[a-zA-Z_]*");
 
         Validation<String, String> validPassword(String pass, String confirmPass) {
