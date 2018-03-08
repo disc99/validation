@@ -686,686 +686,686 @@ public interface Validation<E, T> {
         Objects.requireNonNull(validation11, "validation11 is null");
         return new Builder11<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11);
     }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder12 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @return an instance of Builder12&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> Builder12<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        return new Builder12<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder13 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @return an instance of Builder13&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> Builder13<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        return new Builder13<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder14 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @return an instance of Builder14&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> Builder14<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        return new Builder14<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder15 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @return an instance of Builder15&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> Builder15<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        return new Builder15<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder16 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param <T16>        type of 16 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @param validation16 16 validation
-     * @return an instance of Builder16&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> Builder16<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        Objects.requireNonNull(validation16, "validation16 is null");
-        return new Builder16<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder17 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param <T16>        type of 16 valid value
-     * @param <T17>        type of 17 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @param validation16 16 validation
-     * @param validation17 17 validation
-     * @return an instance of Builder17&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17> Builder17<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        Objects.requireNonNull(validation16, "validation16 is null");
-        Objects.requireNonNull(validation17, "validation17 is null");
-        return new Builder17<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder18 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param <T16>        type of 16 valid value
-     * @param <T17>        type of 17 valid value
-     * @param <T18>        type of 18 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @param validation16 16 validation
-     * @param validation17 17 validation
-     * @param validation18 18 validation
-     * @return an instance of Builder18&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18> Builder18<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        Objects.requireNonNull(validation16, "validation16 is null");
-        Objects.requireNonNull(validation17, "validation17 is null");
-        Objects.requireNonNull(validation18, "validation18 is null");
-        return new Builder18<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder19 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param <T16>        type of 16 valid value
-     * @param <T17>        type of 17 valid value
-     * @param <T18>        type of 18 valid value
-     * @param <T19>        type of 19 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @param validation16 16 validation
-     * @param validation17 17 validation
-     * @param validation18 18 validation
-     * @param validation19 19 validation
-     * @return an instance of Builder19&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> Builder19<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        Objects.requireNonNull(validation16, "validation16 is null");
-        Objects.requireNonNull(validation17, "validation17 is null");
-        Objects.requireNonNull(validation18, "validation18 is null");
-        Objects.requireNonNull(validation19, "validation19 is null");
-        return new Builder19<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder20 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param <T16>        type of 16 valid value
-     * @param <T17>        type of 17 valid value
-     * @param <T18>        type of 18 valid value
-     * @param <T19>        type of 19 valid value
-     * @param <T20>        type of 20 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @param validation16 16 validation
-     * @param validation17 17 validation
-     * @param validation18 18 validation
-     * @param validation19 19 validation
-     * @param validation20 20 validation
-     * @return an instance of Builder20&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19,T20&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20> Builder20<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19, Validation<E, T20> validation20) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        Objects.requireNonNull(validation16, "validation16 is null");
-        Objects.requireNonNull(validation17, "validation17 is null");
-        Objects.requireNonNull(validation18, "validation18 is null");
-        Objects.requireNonNull(validation19, "validation19 is null");
-        Objects.requireNonNull(validation20, "validation20 is null");
-        return new Builder20<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder21 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param <T16>        type of 16 valid value
-     * @param <T17>        type of 17 valid value
-     * @param <T18>        type of 18 valid value
-     * @param <T19>        type of 19 valid value
-     * @param <T20>        type of 20 valid value
-     * @param <T21>        type of 21 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @param validation16 16 validation
-     * @param validation17 17 validation
-     * @param validation18 18 validation
-     * @param validation19 19 validation
-     * @param validation20 20 validation
-     * @param validation21 21 validation
-     * @return an instance of Builder21&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19,T20,T21&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21> Builder21<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19, Validation<E, T20> validation20, Validation<E, T21> validation21) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        Objects.requireNonNull(validation16, "validation16 is null");
-        Objects.requireNonNull(validation17, "validation17 is null");
-        Objects.requireNonNull(validation18, "validation18 is null");
-        Objects.requireNonNull(validation19, "validation19 is null");
-        Objects.requireNonNull(validation20, "validation20 is null");
-        Objects.requireNonNull(validation21, "validation21 is null");
-        return new Builder21<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21);
-    }
-
-    /**
-     * Combines three {@code Validation}s into a {@link Builder22 }.
-     *
-     * @param <E>         type of violation
-     * @param <T1>        type of 1 valid value
-     * @param <T2>        type of 2 valid value
-     * @param <T3>        type of 3 valid value
-     * @param <T4>        type of 4 valid value
-     * @param <T5>        type of 5 valid value
-     * @param <T6>        type of 6 valid value
-     * @param <T7>        type of 7 valid value
-     * @param <T8>        type of 8 valid value
-     * @param <T9>        type of 9 valid value
-     * @param <T10>        type of 10 valid value
-     * @param <T11>        type of 11 valid value
-     * @param <T12>        type of 12 valid value
-     * @param <T13>        type of 13 valid value
-     * @param <T14>        type of 14 valid value
-     * @param <T15>        type of 15 valid value
-     * @param <T16>        type of 16 valid value
-     * @param <T17>        type of 17 valid value
-     * @param <T18>        type of 18 valid value
-     * @param <T19>        type of 19 valid value
-     * @param <T20>        type of 20 valid value
-     * @param <T21>        type of 21 valid value
-     * @param <T22>        type of 22 valid value
-     * @param validation1 1 validation
-     * @param validation2 2 validation
-     * @param validation3 3 validation
-     * @param validation4 4 validation
-     * @param validation5 5 validation
-     * @param validation6 6 validation
-     * @param validation7 7 validation
-     * @param validation8 8 validation
-     * @param validation9 9 validation
-     * @param validation10 10 validation
-     * @param validation11 11 validation
-     * @param validation12 12 validation
-     * @param validation13 13 validation
-     * @param validation14 14 validation
-     * @param validation15 15 validation
-     * @param validation16 16 validation
-     * @param validation17 17 validation
-     * @param validation18 18 validation
-     * @param validation19 19 validation
-     * @param validation20 20 validation
-     * @param validation21 21 validation
-     * @param validation22 22 validation
-     * @return an instance of Builder22&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19,T20,T21,T22&gt;
-     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21, validation22 is null
-     */
-    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22> Builder22<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19, Validation<E, T20> validation20, Validation<E, T21> validation21, Validation<E, T22> validation22) {
-        Objects.requireNonNull(validation1, "validation1 is null");
-        Objects.requireNonNull(validation2, "validation2 is null");
-        Objects.requireNonNull(validation3, "validation3 is null");
-        Objects.requireNonNull(validation4, "validation4 is null");
-        Objects.requireNonNull(validation5, "validation5 is null");
-        Objects.requireNonNull(validation6, "validation6 is null");
-        Objects.requireNonNull(validation7, "validation7 is null");
-        Objects.requireNonNull(validation8, "validation8 is null");
-        Objects.requireNonNull(validation9, "validation9 is null");
-        Objects.requireNonNull(validation10, "validation10 is null");
-        Objects.requireNonNull(validation11, "validation11 is null");
-        Objects.requireNonNull(validation12, "validation12 is null");
-        Objects.requireNonNull(validation13, "validation13 is null");
-        Objects.requireNonNull(validation14, "validation14 is null");
-        Objects.requireNonNull(validation15, "validation15 is null");
-        Objects.requireNonNull(validation16, "validation16 is null");
-        Objects.requireNonNull(validation17, "validation17 is null");
-        Objects.requireNonNull(validation18, "validation18 is null");
-        Objects.requireNonNull(validation19, "validation19 is null");
-        Objects.requireNonNull(validation20, "validation20 is null");
-        Objects.requireNonNull(validation21, "validation21 is null");
-        Objects.requireNonNull(validation22, "validation22 is null");
-        return new Builder22<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21, validation22);
-    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder12 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @return an instance of Builder12&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> Builder12<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        return new Builder12<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder13 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @return an instance of Builder13&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> Builder13<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        return new Builder13<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder14 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @return an instance of Builder14&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> Builder14<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        return new Builder14<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder15 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @return an instance of Builder15&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> Builder15<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        return new Builder15<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder16 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param <T16>        type of 16 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @param validation16 16 validation
+//     * @return an instance of Builder16&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> Builder16<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        Objects.requireNonNull(validation16, "validation16 is null");
+//        return new Builder16<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder17 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param <T16>        type of 16 valid value
+//     * @param <T17>        type of 17 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @param validation16 16 validation
+//     * @param validation17 17 validation
+//     * @return an instance of Builder17&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17> Builder17<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        Objects.requireNonNull(validation16, "validation16 is null");
+//        Objects.requireNonNull(validation17, "validation17 is null");
+//        return new Builder17<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder18 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param <T16>        type of 16 valid value
+//     * @param <T17>        type of 17 valid value
+//     * @param <T18>        type of 18 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @param validation16 16 validation
+//     * @param validation17 17 validation
+//     * @param validation18 18 validation
+//     * @return an instance of Builder18&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18> Builder18<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        Objects.requireNonNull(validation16, "validation16 is null");
+//        Objects.requireNonNull(validation17, "validation17 is null");
+//        Objects.requireNonNull(validation18, "validation18 is null");
+//        return new Builder18<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder19 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param <T16>        type of 16 valid value
+//     * @param <T17>        type of 17 valid value
+//     * @param <T18>        type of 18 valid value
+//     * @param <T19>        type of 19 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @param validation16 16 validation
+//     * @param validation17 17 validation
+//     * @param validation18 18 validation
+//     * @param validation19 19 validation
+//     * @return an instance of Builder19&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> Builder19<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        Objects.requireNonNull(validation16, "validation16 is null");
+//        Objects.requireNonNull(validation17, "validation17 is null");
+//        Objects.requireNonNull(validation18, "validation18 is null");
+//        Objects.requireNonNull(validation19, "validation19 is null");
+//        return new Builder19<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder20 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param <T16>        type of 16 valid value
+//     * @param <T17>        type of 17 valid value
+//     * @param <T18>        type of 18 valid value
+//     * @param <T19>        type of 19 valid value
+//     * @param <T20>        type of 20 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @param validation16 16 validation
+//     * @param validation17 17 validation
+//     * @param validation18 18 validation
+//     * @param validation19 19 validation
+//     * @param validation20 20 validation
+//     * @return an instance of Builder20&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19,T20&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20> Builder20<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19, Validation<E, T20> validation20) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        Objects.requireNonNull(validation16, "validation16 is null");
+//        Objects.requireNonNull(validation17, "validation17 is null");
+//        Objects.requireNonNull(validation18, "validation18 is null");
+//        Objects.requireNonNull(validation19, "validation19 is null");
+//        Objects.requireNonNull(validation20, "validation20 is null");
+//        return new Builder20<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder21 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param <T16>        type of 16 valid value
+//     * @param <T17>        type of 17 valid value
+//     * @param <T18>        type of 18 valid value
+//     * @param <T19>        type of 19 valid value
+//     * @param <T20>        type of 20 valid value
+//     * @param <T21>        type of 21 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @param validation16 16 validation
+//     * @param validation17 17 validation
+//     * @param validation18 18 validation
+//     * @param validation19 19 validation
+//     * @param validation20 20 validation
+//     * @param validation21 21 validation
+//     * @return an instance of Builder21&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19,T20,T21&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21> Builder21<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19, Validation<E, T20> validation20, Validation<E, T21> validation21) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        Objects.requireNonNull(validation16, "validation16 is null");
+//        Objects.requireNonNull(validation17, "validation17 is null");
+//        Objects.requireNonNull(validation18, "validation18 is null");
+//        Objects.requireNonNull(validation19, "validation19 is null");
+//        Objects.requireNonNull(validation20, "validation20 is null");
+//        Objects.requireNonNull(validation21, "validation21 is null");
+//        return new Builder21<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21);
+//    }
+//
+//    /**
+//     * Combines three {@code Validation}s into a {@link Builder22 }.
+//     *
+//     * @param <E>         type of violation
+//     * @param <T1>        type of 1 valid value
+//     * @param <T2>        type of 2 valid value
+//     * @param <T3>        type of 3 valid value
+//     * @param <T4>        type of 4 valid value
+//     * @param <T5>        type of 5 valid value
+//     * @param <T6>        type of 6 valid value
+//     * @param <T7>        type of 7 valid value
+//     * @param <T8>        type of 8 valid value
+//     * @param <T9>        type of 9 valid value
+//     * @param <T10>        type of 10 valid value
+//     * @param <T11>        type of 11 valid value
+//     * @param <T12>        type of 12 valid value
+//     * @param <T13>        type of 13 valid value
+//     * @param <T14>        type of 14 valid value
+//     * @param <T15>        type of 15 valid value
+//     * @param <T16>        type of 16 valid value
+//     * @param <T17>        type of 17 valid value
+//     * @param <T18>        type of 18 valid value
+//     * @param <T19>        type of 19 valid value
+//     * @param <T20>        type of 20 valid value
+//     * @param <T21>        type of 21 valid value
+//     * @param <T22>        type of 22 valid value
+//     * @param validation1 1 validation
+//     * @param validation2 2 validation
+//     * @param validation3 3 validation
+//     * @param validation4 4 validation
+//     * @param validation5 5 validation
+//     * @param validation6 6 validation
+//     * @param validation7 7 validation
+//     * @param validation8 8 validation
+//     * @param validation9 9 validation
+//     * @param validation10 10 validation
+//     * @param validation11 11 validation
+//     * @param validation12 12 validation
+//     * @param validation13 13 validation
+//     * @param validation14 14 validation
+//     * @param validation15 15 validation
+//     * @param validation16 16 validation
+//     * @param validation17 17 validation
+//     * @param validation18 18 validation
+//     * @param validation19 19 validation
+//     * @param validation20 20 validation
+//     * @param validation21 21 validation
+//     * @param validation22 22 validation
+//     * @return an instance of Builder22&lt;E,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19,T20,T21,T22&gt;
+//     * @throws NullPointerException if validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21, validation22 is null
+//     */
+//    static <E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22> Builder22<E, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22> combine(Validation<E, T1> validation1, Validation<E, T2> validation2, Validation<E, T3> validation3, Validation<E, T4> validation4, Validation<E, T5> validation5, Validation<E, T6> validation6, Validation<E, T7> validation7, Validation<E, T8> validation8, Validation<E, T9> validation9, Validation<E, T10> validation10, Validation<E, T11> validation11, Validation<E, T12> validation12, Validation<E, T13> validation13, Validation<E, T14> validation14, Validation<E, T15> validation15, Validation<E, T16> validation16, Validation<E, T17> validation17, Validation<E, T18> validation18, Validation<E, T19> validation19, Validation<E, T20> validation20, Validation<E, T21> validation21, Validation<E, T22> validation22) {
+//        Objects.requireNonNull(validation1, "validation1 is null");
+//        Objects.requireNonNull(validation2, "validation2 is null");
+//        Objects.requireNonNull(validation3, "validation3 is null");
+//        Objects.requireNonNull(validation4, "validation4 is null");
+//        Objects.requireNonNull(validation5, "validation5 is null");
+//        Objects.requireNonNull(validation6, "validation6 is null");
+//        Objects.requireNonNull(validation7, "validation7 is null");
+//        Objects.requireNonNull(validation8, "validation8 is null");
+//        Objects.requireNonNull(validation9, "validation9 is null");
+//        Objects.requireNonNull(validation10, "validation10 is null");
+//        Objects.requireNonNull(validation11, "validation11 is null");
+//        Objects.requireNonNull(validation12, "validation12 is null");
+//        Objects.requireNonNull(validation13, "validation13 is null");
+//        Objects.requireNonNull(validation14, "validation14 is null");
+//        Objects.requireNonNull(validation15, "validation15 is null");
+//        Objects.requireNonNull(validation16, "validation16 is null");
+//        Objects.requireNonNull(validation17, "validation17 is null");
+//        Objects.requireNonNull(validation18, "validation18 is null");
+//        Objects.requireNonNull(validation19, "validation19 is null");
+//        Objects.requireNonNull(validation20, "validation20 is null");
+//        Objects.requireNonNull(validation21, "validation21 is null");
+//        Objects.requireNonNull(validation22, "validation22 is null");
+//        return new Builder22<>(validation1, validation2, validation3, validation4, validation5, validation6, validation7, validation8, validation9, validation10, validation11, validation12, validation13, validation14, validation15, validation16, validation17, validation18, validation19, validation20, validation21, validation22);
+//    }
 }
