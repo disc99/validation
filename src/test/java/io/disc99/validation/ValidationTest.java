@@ -8,6 +8,7 @@ import java.util.function.Function;
 import static io.disc99.validation.Validation.combine;
 import static io.disc99.validation.Validation.invalid;
 import static io.disc99.validation.Validation.valid;
+import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -288,11 +289,27 @@ public class ValidationTest {
             this.confirmPass = confirmPass;
         }
     }
+
     static class User {
-        String name;
-        String pass;
-        User(String name, String pass) {
+        UserName name;
+        UserPassword pass;
+        User(UserName name, UserPassword pass) {
             this.name = name;
+            this.pass = pass;
+        }
+    }
+
+    static class UserName {
+        String name;
+
+        public UserName(String name) {
+            this.name = name;
+        }
+    }
+    static class UserPassword {
+        String pass;
+
+        public UserPassword(String pass) {
             this.pass = pass;
         }
     }
@@ -320,42 +337,59 @@ public class ValidationTest {
         assertThat(v4.isValid()).isTrue();
     }
 
-    static class UserName {
-        String name;
-
-        public UserName(String name) {
-            this.name = name;
-        }
-    }
-    static class UserPassword {
-        String pass;
-
-        public UserPassword(String pass) {
-            this.pass = pass;
-        }
-    }
-
     static class FormValidator implements Validator {
         Validation<String, User> validFrom(SignUpForm form) {
             return combine(
-                    validName(form.name),
-                    validPassword(form.pass, form.confirmPass)
+                    notEmpty(form.name).map(UserName::new),
+                    validPassword(form.pass, form.confirmPass).map(UserPassword::new)
+            ).apply(User::new);
+        }
+
+        Validation<String, User> validFrom2(SignUpForm form) {
+            return combine(
+                    required(form.name),
+                    required(form.pass),
+                    length(form.pass, 6, 20),
+                    pattern(form.pass, "[a-zA-Z_]*"),
+                    required(form.confirmPass),
+                    equal(form.pass, form.confirmPass)
+            ).apply((name, pass, _1, _2, _3, _4) -> new User(new UserName(name), new UserPassword(pass)));
+        }
+
+        Validation<String, User> validFrom3(SignUpForm form) {
+            return combine(
+                    required(form.name).map(UserName::new),
+                    combine(
+                            required(form.pass).flatMap(pass -> combine(
+                                    length(pass, 6, 20),
+                                    pattern(pass, "[a-zA-Z_]*")
+                            ).apply((_1, _2) -> _1)),
+                            required(form.confirmPass)
+                    ).apply(this::equal).flatMap(identity()).map(UserPassword::new)
+            ).apply(User::new);
+        }
+
+        Validation<String, User> validFrom4(SignUpForm form) {
+            return combine(
+                    required(form.name).map(UserName::new),
+                    combine(
+                            required(form.pass)
+                                    .flatMap(pass -> length(pass, 6, 20))
+                                    .flatMap(pass -> pattern(pass, "[a-zA-Z_]*")),
+                            required(form.confirmPass)
+                    ).apply(this::equal).flatMap(identity()).map(UserPassword::new)
             ).apply(User::new);
         }
 
         Validation<String, String> validName(String name) {
-            return isNotEmpty(name);
+            return notEmpty(name);
         }
 
-        Function<String, Validation<String, String>> passSize = p -> size(p.length(), 6, 20).map(l -> p);
-        Function<String, Validation<String, String>> passPattern = p -> pattern(p, "[a-zA-Z_]*");
-
         Validation<String, String> validPassword(String pass, String confirmPass) {
-            return Validation.zip(
-                    isNotEmpty(pass).flatMap(passSize).flatMap(passPattern),
-                    isNotEmpty(confirmPass).flatMap(passSize).flatMap(passPattern),
-                    (p1, p2) -> p1.equals(p2) ? valid(p1) : invalid("not match the confirmation password")
-            );
+            return combine(
+                    notEmpty(pass).flatMap(p -> length(p, 6, 20)).flatMap(p -> pattern(p, "[a-zA-Z_]*")),
+                    notEmpty(confirmPass)
+            ).apply(this::equal).flatMap(identity());
         }
     }
 }

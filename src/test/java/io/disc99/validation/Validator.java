@@ -18,15 +18,15 @@ public interface Validator {
         return Objects.equals(target1, target2) ? valid(target1) : invalid("not equal");
     }
 
-    default Validation<String, String> required(String target) {
+    default <T> Validation<String, T> required(T target) {
+        return Objects.isNull(target) ? invalid("may not be empty") : valid(target);
+    }
+
+    default Validation<String, String> notEmpty(String target) {
         return Util.isEmpty(target) ? invalid("may not be empty") : valid(target);
     }
 
-    default Validation<String, String> isNotEmpty(String target) {
-        return Util.isEmpty(target) ? invalid("may not be empty") : valid(target);
-    }
-
-    default Validation<String, String> isNumeric(String target) {
+    default Validation<String, String> numeric(String target) {
         return Util.isNumeric(target) ? invalid("my not be number") : valid(target);
     }
 
@@ -34,6 +34,12 @@ public interface Validator {
         return Pattern.matches(regexp, target)
                 ? valid(target)
                 : invalid(String.format("must match \"%s\"", regexp));
+    }
+
+    default Validation<String, String> length(String target, Integer min, Integer max) {
+        return target.length() >= min && target.length() <= max
+                ? valid(target)
+                : invalid(String.format("size must be between %s and %s", min, max));
     }
 
     default Validation<String, Integer> size(Integer target, Integer min, Integer max) {
