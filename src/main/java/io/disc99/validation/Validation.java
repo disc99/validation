@@ -1,12 +1,16 @@
 package io.disc99.validation;
 
 
+import io.disc99.function.*;
+
 import java.io.Serializable;
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 import static java.util.function.Function.identity;
 import static io.disc99.validation.Builders.*;
+import static java.util.stream.Collectors.toList;
 
 public interface Validation<E, T> {
 
@@ -120,6 +124,24 @@ public interface Validation<E, T> {
     default <U> Validation<E, U> flatMap(Function<? super T, ? extends Validation<E, ? extends U>> mapper) {
         Objects.requireNonNull(mapper, "mapper is null");
         return isInvalid() ? (Validation<E, U>) this : (Validation<E, U>) mapper.apply(get());
+    }
+
+    /**
+     * FlatMaps the errors if this {@code Validation} is an {@code Invalid}, otherwise does nothing.
+     *
+     * @param <U> type of the violations resulting from the mapping
+     * @param f   a function that maps violations to sequences
+     * @return an instance of {@code Validation<U, T>}
+     * @throws NullPointerException if the given function {@code f} is null
+     */
+    @SuppressWarnings("unchecked")
+    default <U> Validation<U, T> flatMapValidations(Function<? super E, ? extends List<? extends U>> f) {
+        Objects.requireNonNull(f, "f is null");
+        if (isValid()) {
+            return (Validation<U, T>) this;
+        } else {
+            return invalid(getViolations().stream().flatMap(e -> f.apply(e).stream()).collect(toList()));
+        }
     }
 
     /**
