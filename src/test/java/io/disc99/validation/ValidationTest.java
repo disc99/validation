@@ -92,6 +92,43 @@ public class ValidationTest {
     }
 
     @Test
+    public void shouldBuildUpForSuccessAccumulate() {
+        Validation<String, String> v1 = valid("John Doe");
+        Validation<String, Integer> v2 = valid(39);
+        Validation<String, Optional<String>> v3 = valid(Optional.of("address"));
+        Validation<String, Optional<String>> v4 = valid(Optional.empty());
+        Validation<String, String> v5 = valid("111-111-1111");
+        Validation<String, String> v6 = valid("alt1");
+        Validation<String, String> v7 = valid("alt2");
+        Validation<String, String> v8 = valid("alt3");
+        Validation<String, String> v9 = valid("alt4");
+
+        Validation<String, TestValidation> result = v1.accumulate(v2, TestValidation::new);
+        Validation<String, TestValidation> result2 = v1.accumulate(v2, v3, TestValidation::new);
+        Validation<String, TestValidation> result3 = v1.accumulate(v2, v4, TestValidation::new);
+        Validation<String, TestValidation> result4 = v1.accumulate(v2, v3, v5, TestValidation::new);
+        Validation<String, TestValidation> result5 = v1.accumulate(v2, v3, v5, v6, TestValidation::new);
+        Validation<String, TestValidation> result6 = v1.accumulate(v2, v3, v5, v6, v7, TestValidation::new);
+        Validation<String, TestValidation> result7 = v1.accumulate(v2, v3, v5, v6, v7, v8, TestValidation::new);
+        Validation<String, TestValidation> result8 = v1.accumulate(v2, v3, v5, v6, v7, v8, v9, TestValidation::new);
+
+        Validation<String, String> result9 = v1.accumulate(v2, v3, (p1, p2, p3) -> p1 + ":" + p2 + ":" + p3.orElse("none"));
+
+        assertThat(result.isValid()).isTrue();
+        assertThat(result2.isValid()).isTrue();
+        assertThat(result3.isValid()).isTrue();
+        assertThat(result4.isValid()).isTrue();
+        assertThat(result5.isValid()).isTrue();
+        assertThat(result6.isValid()).isTrue();
+        assertThat(result7.isValid()).isTrue();
+        assertThat(result8.isValid()).isTrue();
+        assertThat(result9.isValid()).isTrue();
+
+        assertThat(result.get() instanceof TestValidation).isTrue();
+        assertThat(result9.get() instanceof String).isTrue();
+    }
+
+    @Test
     public void shouldValidateValidPerson() {
         final String name = "John Doe";
         final int age = 30;

@@ -328,6 +328,48 @@ public interface Validation<E, T> {
         }
     }
 
+    default <R, T2> Validation<E, R> accumulate(Validation<E, T2> v2, BiFunction<T, T2, R> f) {
+        return v2.apply(this.apply(valid(
+                t1 -> t2 -> f.apply(t1, t2)
+        )));
+    }
+
+    default <R, T2, T3> Validation<E, R> accumulate(Validation<E, T2> v2, Validation<E, T3> v3, Function3<T, T2, T3, R> f) {
+        return v3.apply(v2.apply(this.apply(valid(
+                t1 -> t2 -> t3 -> f.apply(t1, t2, t3)
+        ))));
+    }
+
+    default <R, T2, T3, T4> Validation<E, R> accumulate(Validation<E, T2> v2, Validation<E, T3> v3, Validation<E, T4> v4, Function4<T, T2, T3, T4, R> f) {
+        // TODO
+        return null;
+    }
+
+    default <R, T2, T3, T4, T5> Validation<E, R> accumulate(Validation<E, T2> v2, Validation<E, T3> v3, Validation<E, T4> v4, Validation<E, T5> v5, Function5<T, T2, T3, T4, T5, R> f) {
+        // TODO
+        return null;
+    }
+
+    default <R, T2, T3, T4, T5, T6> Validation<E, R> accumulate(Validation<E, T2> v2, Validation<E, T3> v3, Validation<E, T4> v4, Validation<E, T5> v5, Validation<E, T6> v6, Function6<T, T2, T3, T4, T5, T6, R> f) {
+        // TODO
+        return null;
+    }
+
+    default <R, T2, T3, T4, T5, T6, T7> Validation<E, R> accumulate(Validation<E, T2> v2, Validation<E, T3> v3, Validation<E, T4> v4, Validation<E, T5> v5, Validation<E, T6> v6, Validation<E, T7> v7, Function7<T, T2, T3, T4, T5, T6, T7, R> f) {
+        // TODO
+        return null;
+    }
+
+    default <R, T2, T3, T4, T5, T6, T7, T8> Validation<E, R> accumulate(Validation<E, T2> v2, Validation<E, T3> v3, Validation<E, T4> v4, Validation<E, T5> v5, Validation<E, T6> v6, Validation<E, T7> v7, Validation<E, T8> v8, Function8<T, T2, T3, T4, T5, T6, T7, T8, R> f) {
+        // TODO
+        return null;
+    }
+
+    default <R, T2, T3, T4, T5, T6, T7, T8, T9> Validation<E, R> accumulate(Validation<E, T2> v2, Validation<E, T3> v3, Validation<E, T4> v4, Validation<E, T5> v5, Validation<E, T6> v6, Validation<E, T7> v7, Validation<E, T8> v8, Validation<E, T9> v9, Function9<T, T2, T3, T4, T5, T6, T7, T8, T9, R> f) {
+        // TODO
+        return null;
+    }
+
     /**
      * Combines two {@code Validation}s to form a {@link Builder2}, which can then be used to perform further
      * combines, or apply a function to it in order to transform the {@link Builder2} into a {@code Validation}.
