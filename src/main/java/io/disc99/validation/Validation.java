@@ -350,6 +350,12 @@ public interface Validation<E, T> {
         }
     }
 
+    static <E, R, T1, T2> Validation<E, R> compose(Validation<E, T1> v1, Validation<E, T2> v2, BiFunction<T1, T2, R> f) {
+        return v2.apply(v1.apply(valid(
+                t1 -> t2 -> f.apply(t1, t2)
+        )));
+    }
+
     default <R, T2> Validation<E, R> accumulate(Validation<E, T2> v2, BiFunction<T, T2, R> f) {
         return v2.apply(this.apply(valid(
                 t1 -> t2 -> f.apply(t1, t2)

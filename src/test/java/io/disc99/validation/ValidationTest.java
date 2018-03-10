@@ -3,11 +3,8 @@ package io.disc99.validation;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.function.Function;
 
-import static io.disc99.validation.Validation.combine;
-import static io.disc99.validation.Validation.invalid;
-import static io.disc99.validation.Validation.valid;
+import static io.disc99.validation.Validation.*;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
@@ -104,7 +101,7 @@ public class ValidationTest {
         Validation<String, String> v8 = valid("alt3");
         Validation<String, String> v9 = valid("alt4");
 
-        Validation<String, TestValidation> result = v1.accumulate(v2, TestValidation::new);
+        Validation<String, TestValidation> result =  v1.accumulate(v2, TestValidation::new);
         Validation<String, TestValidation> result2 = v1.accumulate(v2, v3, TestValidation::new);
         Validation<String, TestValidation> result3 = v1.accumulate(v2, v4, TestValidation::new);
         Validation<String, TestValidation> result4 = v1.accumulate(v2, v3, v5, TestValidation::new);
@@ -340,8 +337,8 @@ public class ValidationTest {
     static class FormValidator implements Validator {
         Validation<String, User> validFrom(SignUpForm form) {
             return combine(
-                    notEmpty(form.name).map(UserName::new),
-                    validPassword(form.pass, form.confirmPass).map(UserPassword::new)
+                    validName(form.name),
+                    validPassword(form.pass, form.confirmPass)
             ).apply(User::new);
         }
 
@@ -381,15 +378,35 @@ public class ValidationTest {
             ).apply(User::new);
         }
 
-        Validation<String, String> validName(String name) {
-            return notEmpty(name);
+        Validation<String, User> validFrom5(SignUpForm form) {
+            return compose(
+                    validName(form.name),
+                    validPassword(form.pass, form.confirmPass),
+                    User::new
+            );
         }
 
-        Validation<String, String> validPassword(String pass, String confirmPass) {
+        Validation<String, User> validFrom6(SignUpForm form) {
+            return compose(
+                    required(form.name).map(UserName::new),
+                    compose(
+                            required(form.pass).flatMap(pass -> length(pass, 6, 20)).flatMap(pass -> pattern(pass, "[a-zA-Z_]*")),
+                            required(form.confirmPass),
+                            this::equal
+                    ).flatMap(identity()).map(UserPassword::new),
+                    User::new
+            );
+        }
+
+        Validation<String, UserName> validName(String name) {
+            return notEmpty(name).map(UserName::new);
+        }
+
+        Validation<String, UserPassword> validPassword(String pass, String confirmPass) {
             return combine(
                     notEmpty(pass).flatMap(p -> length(p, 6, 20)).flatMap(p -> pattern(p, "[a-zA-Z_]*")),
                     notEmpty(confirmPass)
-            ).apply(this::equal).flatMap(identity());
+            ).apply(this::equal).flatMap(identity()).map(UserPassword::new);
         }
     }
 }
